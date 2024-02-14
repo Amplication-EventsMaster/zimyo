@@ -1,0 +1,103 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Payment {
+  amount     Int
+  booking    Booking?        @relation(fields: [bookingId], references: [id])
+  bookingId  Int?
+  currency   String
+  data       Json
+  externalId String          @unique
+  fee        Int
+  id         Int             @id @default(autoincrement())
+  refunded   Boolean
+  success    Boolean
+  type       EnumPaymentType
+  uid        String          @unique
+}
+
+model DailyEventReference {
+  booking    Booking?
+  dailytoken String   @default("dailytoken")
+  dailyurl   String   @default("dailycallurl")
+  id         Int      @id @default(autoincrement())
+}
+
+model Team {
+  bio          String?
+  eventTypes   Json?
+  hideBranding Boolean @default(false)
+  id           Int     @id @default(autoincrement())
+  logo         String?
+  members      Json?
+  name         String?
+  slug         String? @unique
+}
+
+model BookingReference {
+  booking            Booking? @relation(fields: [bookingId], references: [id])
+  bookingId          Int?
+  deleted            Boolean?
+  externalCalendarId String?
+  id                 Int      @id @default(autoincrement())
+  meetingId          String?
+  meetingPassword    String?
+  meetingUrl         String?
+  typeField          String   @map("type")
+  uid                String
+}
+
+model HashedLink {
+  eventTypeId Int
+  id          Int    @id @default(autoincrement())
+  link        String @unique
+}
+
+model Booking {
+  attendees             Json?
+  cancellationReason    String?
+  createdAt             DateTime             @default(now())
+  customInputs          Json?
+  dailyRef              DailyEventReference? @relation(fields: [dailyEventReferenceId], references: [id])
+  description           String?
+  destinationCalendarId Int?
+  dynamicEventSlugRef   String?
+  dynamicGroupSlugRef   String?
+  endTime               DateTime
+  eventTypeId           Int?
+  fromReschedule        String?
+  id                    Int                  @id @default(autoincrement())
+  location              String?
+  paid                  Boolean              @default(false)
+  payment               Payment[]
+  recurringEventId      String?
+  references            BookingReference[]
+  rejectionReason       String?
+  rescheduled           Boolean?
+  smsReminderNumber     String?
+  startTime             DateTime
+  status                EnumBookingStatus    @default(ACCEPTED)
+  title                 String
+  uid                   String               @unique
+  updatedAt             DateTime?
+  userId                Int?
+  workflowReminders     Json?
+  dailyEventReferenceId Int?
+}
+
+enum EnumPaymentType {
+  STRIPE
+}
+
+enum EnumBookingStatus {
+  CANCELLED
+  ACCEPTED
+  REJECTED
+  PENDING
+}
