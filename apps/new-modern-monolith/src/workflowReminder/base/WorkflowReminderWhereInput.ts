@@ -11,9 +11,9 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { BookingWhereUniqueInput } from "../../booking/base/BookingWhereUniqueInput";
-import { ValidateNested, IsOptional, IsEnum } from "class-validator";
+import { IntNullableFilter } from "../../util/IntNullableFilter";
 import { Type } from "class-transformer";
+import { IsOptional, IsEnum, ValidateNested } from "class-validator";
 import { IntFilter } from "../../util/IntFilter";
 import { EnumWorkflowReminderMethod } from "./EnumWorkflowReminderMethod";
 import { StringNullableFilter } from "../../util/StringNullableFilter";
@@ -25,15 +25,14 @@ import { WorkflowStepWhereUniqueInput } from "../../workflowStep/base/WorkflowSt
 class WorkflowReminderWhereInput {
   @ApiProperty({
     required: false,
-    type: () => BookingWhereUniqueInput,
+    type: IntNullableFilter,
   })
-  @ValidateNested()
-  @Type(() => BookingWhereUniqueInput)
+  @Type(() => IntNullableFilter)
   @IsOptional()
-  @Field(() => BookingWhereUniqueInput, {
+  @Field(() => IntNullableFilter, {
     nullable: true,
   })
-  booking?: BookingWhereUniqueInput;
+  booking?: IntNullableFilter;
 
   @ApiProperty({
     required: false,

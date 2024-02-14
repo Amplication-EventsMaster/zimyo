@@ -26,8 +26,6 @@ import { ApiKeyFindManyArgs } from "../../apiKey/base/ApiKeyFindManyArgs";
 import { ApiKey } from "../../apiKey/base/ApiKey";
 import { AvailabilityFindManyArgs } from "../../availability/base/AvailabilityFindManyArgs";
 import { Availability } from "../../availability/base/Availability";
-import { BookingFindManyArgs } from "../../booking/base/BookingFindManyArgs";
-import { Booking } from "../../booking/base/Booking";
 import { CredentialFindManyArgs } from "../../credential/base/CredentialFindManyArgs";
 import { Credential } from "../../credential/base/Credential";
 import { EventTypeFindManyArgs } from "../../eventType/base/EventTypeFindManyArgs";
@@ -166,20 +164,6 @@ export class UserResolverBase {
     @graphql.Args() args: AvailabilityFindManyArgs
   ): Promise<Availability[]> {
     const results = await this.service.findAvailability(parent.id, args);
-
-    if (!results) {
-      return [];
-    }
-
-    return results;
-  }
-
-  @graphql.ResolveField(() => [Booking], { name: "bookings" })
-  async findBookings(
-    @graphql.Parent() parent: User,
-    @graphql.Args() args: BookingFindManyArgs
-  ): Promise<Booking[]> {
-    const results = await this.service.findBookings(parent.id, args);
 
     if (!results) {
       return [];

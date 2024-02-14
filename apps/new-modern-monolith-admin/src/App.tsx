@@ -21,10 +21,6 @@ import { UserList } from "./user/UserList";
 import { UserCreate } from "./user/UserCreate";
 import { UserEdit } from "./user/UserEdit";
 import { UserShow } from "./user/UserShow";
-import { TeamList } from "./team/TeamList";
-import { TeamCreate } from "./team/TeamCreate";
-import { TeamEdit } from "./team/TeamEdit";
-import { TeamShow } from "./team/TeamShow";
 import { MembershipList } from "./membership/MembershipList";
 import { MembershipCreate } from "./membership/MembershipCreate";
 import { MembershipEdit } from "./membership/MembershipEdit";
@@ -33,22 +29,10 @@ import { VerificationTokenList } from "./verificationToken/VerificationTokenList
 import { VerificationTokenCreate } from "./verificationToken/VerificationTokenCreate";
 import { VerificationTokenEdit } from "./verificationToken/VerificationTokenEdit";
 import { VerificationTokenShow } from "./verificationToken/VerificationTokenShow";
-import { BookingReferenceList } from "./bookingReference/BookingReferenceList";
-import { BookingReferenceCreate } from "./bookingReference/BookingReferenceCreate";
-import { BookingReferenceEdit } from "./bookingReference/BookingReferenceEdit";
-import { BookingReferenceShow } from "./bookingReference/BookingReferenceShow";
 import { AttendeeList } from "./attendee/AttendeeList";
 import { AttendeeCreate } from "./attendee/AttendeeCreate";
 import { AttendeeEdit } from "./attendee/AttendeeEdit";
 import { AttendeeShow } from "./attendee/AttendeeShow";
-import { DailyEventReferenceList } from "./dailyEventReference/DailyEventReferenceList";
-import { DailyEventReferenceCreate } from "./dailyEventReference/DailyEventReferenceCreate";
-import { DailyEventReferenceEdit } from "./dailyEventReference/DailyEventReferenceEdit";
-import { DailyEventReferenceShow } from "./dailyEventReference/DailyEventReferenceShow";
-import { BookingList } from "./booking/BookingList";
-import { BookingCreate } from "./booking/BookingCreate";
-import { BookingEdit } from "./booking/BookingEdit";
-import { BookingShow } from "./booking/BookingShow";
 import { ScheduleList } from "./schedule/ScheduleList";
 import { ScheduleCreate } from "./schedule/ScheduleCreate";
 import { ScheduleEdit } from "./schedule/ScheduleEdit";
@@ -73,10 +57,6 @@ import { ReminderMailList } from "./reminderMail/ReminderMailList";
 import { ReminderMailCreate } from "./reminderMail/ReminderMailCreate";
 import { ReminderMailEdit } from "./reminderMail/ReminderMailEdit";
 import { ReminderMailShow } from "./reminderMail/ReminderMailShow";
-import { PaymentList } from "./payment/PaymentList";
-import { PaymentCreate } from "./payment/PaymentCreate";
-import { PaymentEdit } from "./payment/PaymentEdit";
-import { PaymentShow } from "./payment/PaymentShow";
 import { WebhookList } from "./webhook/WebhookList";
 import { WebhookCreate } from "./webhook/WebhookCreate";
 import { WebhookEdit } from "./webhook/WebhookEdit";
@@ -89,10 +69,6 @@ import { ApiKeyList } from "./apiKey/ApiKeyList";
 import { ApiKeyCreate } from "./apiKey/ApiKeyCreate";
 import { ApiKeyEdit } from "./apiKey/ApiKeyEdit";
 import { ApiKeyShow } from "./apiKey/ApiKeyShow";
-import { HashedLinkList } from "./hashedLink/HashedLinkList";
-import { HashedLinkCreate } from "./hashedLink/HashedLinkCreate";
-import { HashedLinkEdit } from "./hashedLink/HashedLinkEdit";
-import { HashedLinkShow } from "./hashedLink/HashedLinkShow";
 import { AccountList } from "./account/AccountList";
 import { AccountCreate } from "./account/AccountCreate";
 import { AccountEdit } from "./account/AccountEdit";
@@ -180,13 +156,6 @@ const App = (): React.ReactElement => {
           show={UserShow}
         />
         <Resource
-          name="Team"
-          list={TeamList}
-          edit={TeamEdit}
-          create={TeamCreate}
-          show={TeamShow}
-        />
-        <Resource
           name="Membership"
           list={MembershipList}
           edit={MembershipEdit}
@@ -201,32 +170,11 @@ const App = (): React.ReactElement => {
           show={VerificationTokenShow}
         />
         <Resource
-          name="BookingReference"
-          list={BookingReferenceList}
-          edit={BookingReferenceEdit}
-          create={BookingReferenceCreate}
-          show={BookingReferenceShow}
-        />
-        <Resource
           name="Attendee"
           list={AttendeeList}
           edit={AttendeeEdit}
           create={AttendeeCreate}
           show={AttendeeShow}
-        />
-        <Resource
-          name="DailyEventReference"
-          list={DailyEventReferenceList}
-          edit={DailyEventReferenceEdit}
-          create={DailyEventReferenceCreate}
-          show={DailyEventReferenceShow}
-        />
-        <Resource
-          name="Booking"
-          list={BookingList}
-          edit={BookingEdit}
-          create={BookingCreate}
-          show={BookingShow}
         />
         <Resource
           name="Schedule"
@@ -271,13 +219,6 @@ const App = (): React.ReactElement => {
           show={ReminderMailShow}
         />
         <Resource
-          name="Payment"
-          list={PaymentList}
-          edit={PaymentEdit}
-          create={PaymentCreate}
-          show={PaymentShow}
-        />
-        <Resource
           name="Webhook"
           list={WebhookList}
           edit={WebhookEdit}
@@ -297,13 +238,6 @@ const App = (): React.ReactElement => {
           edit={ApiKeyEdit}
           create={ApiKeyCreate}
           show={ApiKeyShow}
-        />
-        <Resource
-          name="HashedLink"
-          list={HashedLinkList}
-          edit={HashedLinkEdit}
-          create={HashedLinkCreate}
-          show={HashedLinkShow}
         />
         <Resource
           name="Account"

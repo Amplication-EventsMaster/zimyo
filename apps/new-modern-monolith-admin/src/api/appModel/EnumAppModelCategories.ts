@@ -1,5 +1,3 @@
-import { Payment } from "../payment/Payment";
-
 export enum EnumAppModelCategories {
   Calendar = "calendar",
   Messaging = "messaging",

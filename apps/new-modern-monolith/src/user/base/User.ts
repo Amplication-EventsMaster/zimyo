@@ -24,16 +24,15 @@ import {
 import { Type } from "class-transformer";
 import { ApiKey } from "../../apiKey/base/ApiKey";
 import { Availability } from "../../availability/base/Availability";
-import { Booking } from "../../booking/base/Booking";
+import { IsJSONValue } from "../../validators";
+import { GraphQLJSON } from "graphql-type-json";
+import { JsonValue } from "type-fest";
 import { Credential } from "../../credential/base/Credential";
 import { DestinationCalendar } from "../../destinationCalendar/base/DestinationCalendar";
 import { EventType } from "../../eventType/base/EventType";
 import { Feedback } from "../../feedback/base/Feedback";
 import { EnumUserIdentityProvider } from "./EnumUserIdentityProvider";
 import { Impersonation } from "../../impersonation/base/Impersonation";
-import { IsJSONValue } from "../../validators";
-import { GraphQLJSON } from "graphql-type-json";
-import { JsonValue } from "type-fest";
 import { EnumUserPlan } from "./EnumUserPlan";
 import { EnumUserRole } from "./EnumUserRole";
 import { Schedule } from "../../schedule/base/Schedule";
@@ -115,12 +114,13 @@ class User {
 
   @ApiProperty({
     required: false,
-    type: () => [Booking],
   })
-  @ValidateNested()
-  @Type(() => Booking)
+  @IsJSONValue()
   @IsOptional()
-  bookings?: Array<Booking>;
+  @Field(() => GraphQLJSON, {
+    nullable: true,
+  })
+  bookings!: JsonValue;
 
   @ApiProperty({
     required: true,

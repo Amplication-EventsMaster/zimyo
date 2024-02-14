@@ -18,23 +18,27 @@ import { DestinationCalendarService } from "../destinationCalendar.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
+  booking: 42,
   externalId: "exampleExternalId",
   id: 42,
   integration: "exampleIntegration",
 };
 const CREATE_RESULT = {
+  booking: 42,
   externalId: "exampleExternalId",
   id: 42,
   integration: "exampleIntegration",
 };
 const FIND_MANY_RESULT = [
   {
+    booking: 42,
     externalId: "exampleExternalId",
     id: 42,
     integration: "exampleIntegration",
   },
 ];
 const FIND_ONE_RESULT = {
+  booking: 42,
   externalId: "exampleExternalId",
   id: 42,
   integration: "exampleIntegration",

@@ -31,9 +31,6 @@ import { ApiKeyWhereUniqueInput } from "../../apiKey/base/ApiKeyWhereUniqueInput
 import { AvailabilityFindManyArgs } from "../../availability/base/AvailabilityFindManyArgs";
 import { Availability } from "../../availability/base/Availability";
 import { AvailabilityWhereUniqueInput } from "../../availability/base/AvailabilityWhereUniqueInput";
-import { BookingFindManyArgs } from "../../booking/base/BookingFindManyArgs";
-import { Booking } from "../../booking/base/Booking";
-import { BookingWhereUniqueInput } from "../../booking/base/BookingWhereUniqueInput";
 import { CredentialFindManyArgs } from "../../credential/base/CredentialFindManyArgs";
 import { Credential } from "../../credential/base/Credential";
 import { CredentialWhereUniqueInput } from "../../credential/base/CredentialWhereUniqueInput";
@@ -85,6 +82,7 @@ export class UserControllerBase {
         avatar: true,
         away: true,
         bio: true,
+        bookings: true,
         brandColor: true,
         bufferTime: true,
         completedOnboarding: true,
@@ -139,6 +137,7 @@ export class UserControllerBase {
         avatar: true,
         away: true,
         bio: true,
+        bookings: true,
         brandColor: true,
         bufferTime: true,
         completedOnboarding: true,
@@ -194,6 +193,7 @@ export class UserControllerBase {
         avatar: true,
         away: true,
         bio: true,
+        bookings: true,
         brandColor: true,
         bufferTime: true,
         completedOnboarding: true,
@@ -266,6 +266,7 @@ export class UserControllerBase {
           avatar: true,
           away: true,
           bio: true,
+          bookings: true,
           brandColor: true,
           bufferTime: true,
           completedOnboarding: true,
@@ -330,6 +331,7 @@ export class UserControllerBase {
           avatar: true,
           away: true,
           bio: true,
+          bookings: true,
           brandColor: true,
           bufferTime: true,
           completedOnboarding: true,
@@ -653,124 +655,6 @@ export class UserControllerBase {
     });
   }
 
-  @common.Get("/:id/bookings")
-  @ApiNestedQuery(BookingFindManyArgs)
-  async findBookings(
-    @common.Req() request: Request,
-    @common.Param() params: UserWhereUniqueInput
-  ): Promise<Booking[]> {
-    const query = plainToClass(BookingFindManyArgs, request.query);
-    const results = await this.service.findBookings(params.id, {
-      ...query,
-      select: {
-        cancellationReason: true,
-        createdAt: true,
-        customInputs: true,
-
-        dailyRef: {
-          select: {
-            id: true,
-          },
-        },
-
-        description: true,
-
-        destinationCalendar: {
-          select: {
-            id: true,
-          },
-        },
-
-        dynamicEventSlugRef: true,
-        dynamicGroupSlugRef: true,
-        endTime: true,
-
-        eventType: {
-          select: {
-            id: true,
-          },
-        },
-
-        fromReschedule: true,
-        id: true,
-        location: true,
-        paid: true,
-        recurringEventId: true,
-        rejectionReason: true,
-        rescheduled: true,
-        smsReminderNumber: true,
-        startTime: true,
-        status: true,
-        title: true,
-        uid: true,
-        updatedAt: true,
-
-        user: {
-          select: {
-            id: true,
-          },
-        },
-      },
-    });
-    if (results === null) {
-      throw new errors.NotFoundException(
-        `No resource was found for ${JSON.stringify(params)}`
-      );
-    }
-    return results;
-  }
-
-  @common.Post("/:id/bookings")
-  async connectBookings(
-    @common.Param() params: UserWhereUniqueInput,
-    @common.Body() body: BookingWhereUniqueInput[]
-  ): Promise<void> {
-    const data = {
-      bookings: {
-        connect: body,
-      },
-    };
-    await this.service.updateUser({
-      where: params,
-      data,
-      select: { id: true },
-    });
-  }
-
-  @common.Patch("/:id/bookings")
-  async updateBookings(
-    @common.Param() params: UserWhereUniqueInput,
-    @common.Body() body: BookingWhereUniqueInput[]
-  ): Promise<void> {
-    const data = {
-      bookings: {
-        set: body,
-      },
-    };
-    await this.service.updateUser({
-      where: params,
-      data,
-      select: { id: true },
-    });
-  }
-
-  @common.Delete("/:id/bookings")
-  async disconnectBookings(
-    @common.Param() params: UserWhereUniqueInput,
-    @common.Body() body: BookingWhereUniqueInput[]
-  ): Promise<void> {
-    const data = {
-      bookings: {
-        disconnect: body,
-      },
-    };
-    await this.service.updateUser({
-      where: params,
-      data,
-      select: { id: true },
-    });
-  }
-
   @common.Get("/:id/credentials")
   @ApiNestedQuery(CredentialFindManyArgs)
   async findCredentials(
@@ -869,6 +753,7 @@ export class UserControllerBase {
       select: {
         afterEventBuffer: true,
         beforeEventBuffer: true,
+        bookings: true,
         currency: true,
         description: true,
 
@@ -880,13 +765,7 @@ export class UserControllerBase {
 
         disableGuests: true,
         eventName: true,
-
-        hashedLink: {
-          select: {
-            id: true,
-          },
-        },
-
+        hashedLink: true,
         hidden: true,
         hideCalendarNotes: true,
         id: true,
@@ -915,13 +794,7 @@ export class UserControllerBase {
         slotInterval: true,
         slug: true,
         successRedirectUrl: true,
-
-        team: {
-          select: {
-            id: true,
-          },
-        },
-
+        team: true,
         timeZone: true,
         title: true,
         userId: true,
@@ -1490,12 +1363,7 @@ export class UserControllerBase {
         accepted: true,
         id: true,
         role: true,
-
-        team: {
-          select: {
-            id: true,
-          },
-        },
+        team: true,
 
         user: {
           select: {

@@ -61,7 +61,7 @@ class MembershipOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  teamId?: SortOrder;
+  team?: SortOrder;
 
   @ApiProperty({
     required: false,

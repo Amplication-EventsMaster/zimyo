@@ -20,7 +20,6 @@ import { DestinationCalendarFindUniqueArgs } from "./DestinationCalendarFindUniq
 import { CreateDestinationCalendarArgs } from "./CreateDestinationCalendarArgs";
 import { UpdateDestinationCalendarArgs } from "./UpdateDestinationCalendarArgs";
 import { DeleteDestinationCalendarArgs } from "./DeleteDestinationCalendarArgs";
-import { Booking } from "../../booking/base/Booking";
 import { Credential } from "../../credential/base/Credential";
 import { EventType } from "../../eventType/base/EventType";
 import { User } from "../../user/base/User";
@@ -65,12 +64,6 @@ export class DestinationCalendarResolverBase {
       data: {
         ...args.data,
 
-        booking: args.data.booking
-          ? {
-              connect: args.data.booking,
-            }
-          : undefined,
-
         credential: args.data.credential
           ? {
               connect: args.data.credential,
@@ -101,12 +94,6 @@ export class DestinationCalendarResolverBase {
         ...args,
         data: {
           ...args.data,
-
-          booking: args.data.booking
-            ? {
-                connect: args.data.booking,
-              }
-            : undefined,
 
           credential: args.data.credential
             ? {
@@ -151,21 +138,6 @@ export class DestinationCalendarResolverBase {
       }
       throw error;
     }
-  }
-
-  @graphql.ResolveField(() => Booking, {
-    nullable: true,
-    name: "booking",
-  })
-  async getBooking(
-    @graphql.Parent() parent: DestinationCalendar
-  ): Promise<Booking | null> {
-    const result = await this.service.getBooking(parent.id);
-
-    if (!result) {
-      return null;
-    }
-    return result;
   }
 
   @graphql.ResolveField(() => Credential, {

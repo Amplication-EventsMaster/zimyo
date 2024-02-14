@@ -9,9 +9,7 @@ import {
 } from "react-admin";
 import Pagination from "../Components/Pagination";
 import { DESTINATIONCALENDAR_TITLE_FIELD } from "../destinationCalendar/DestinationCalendarTitle";
-import { HASHEDLINK_TITLE_FIELD } from "../hashedLink/HashedLinkTitle";
 import { SCHEDULE_TITLE_FIELD } from "../schedule/ScheduleTitle";
-import { TEAM_TITLE_FIELD } from "../team/TeamTitle";
 
 export const EventTypeList = (props: ListProps): React.ReactElement => {
   return (
@@ -25,6 +23,7 @@ export const EventTypeList = (props: ListProps): React.ReactElement => {
       <Datagrid rowClick="show">
         <TextField label="After Event Buffer" source="afterEventBuffer" />
         <TextField label="Before Event Buffer" source="beforeEventBuffer" />
+        <TextField label="Bookings" source="bookings" />
         <TextField label="Currency" source="currency" />
         <TextField label="Description" source="description" />
         <ReferenceField
@@ -36,13 +35,7 @@ export const EventTypeList = (props: ListProps): React.ReactElement => {
         </ReferenceField>
         <BooleanField label="Disable Guests" source="disableGuests" />
         <TextField label="Event Name" source="eventName" />
-        <ReferenceField
-          label="Hashed Link"
-          source="hashedlink.id"
-          reference="HashedLink"
-        >
-          <TextField source={HASHEDLINK_TITLE_FIELD} />
-        </ReferenceField>
+        <TextField label="Hashed Link" source="hashedLink" />
         <BooleanField label="Hidden" source="hidden" />
         <BooleanField label="Hide Calendar Notes" source="hideCalendarNotes" />
         <TextField label="ID" source="id" />
@@ -80,9 +73,7 @@ export const EventTypeList = (props: ListProps): React.ReactElement => {
         <TextField label="Slot Interval" source="slotInterval" />
         <TextField label="Slug" source="slug" />
         <TextField label="Success Redirect Url" source="successRedirectUrl" />
-        <ReferenceField label="Team" source="team.id" reference="Team">
-          <TextField source={TEAM_TITLE_FIELD} />
-        </ReferenceField>
+        <TextField label="Team" source="team" />
         <TextField label="Time Zone" source="timeZone" />
         <TextField label="Title" source="title" />
         <TextField label="User Id" source="userId" />

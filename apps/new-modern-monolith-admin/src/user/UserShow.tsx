@@ -16,9 +16,7 @@ import { USER_TITLE_FIELD } from "./UserTitle";
 import { APPMODEL_TITLE_FIELD } from "../appModel/AppModelTitle";
 import { EVENTTYPE_TITLE_FIELD } from "../eventType/EventTypeTitle";
 import { SCHEDULE_TITLE_FIELD } from "../schedule/ScheduleTitle";
-import { DAILYEVENTREFERENCE_TITLE_FIELD } from "../dailyEventReference/DailyEventReferenceTitle";
 import { DESTINATIONCALENDAR_TITLE_FIELD } from "../destinationCalendar/DestinationCalendarTitle";
-import { TEAM_TITLE_FIELD } from "../team/TeamTitle";
 
 export const UserShow = (props: ShowProps): React.ReactElement => {
   return (
@@ -31,6 +29,7 @@ export const UserShow = (props: ShowProps): React.ReactElement => {
         <TextField label="Avatar" source="avatar" />
         <BooleanField label="Away" source="away" />
         <TextField label="Bio" source="bio" />
+        <TextField label="Bookings" source="bookings" />
         <TextField label="Brand Color" source="brandColor" />
         <TextField label="Buffer Time" source="bufferTime" />
         <BooleanField
@@ -142,67 +141,6 @@ export const UserShow = (props: ShowProps): React.ReactElement => {
               <TextField source={SCHEDULE_TITLE_FIELD} />
             </ReferenceField>
             <TextField label="Start Time" source="startTime" />
-            <ReferenceField label="User" source="user.id" reference="User">
-              <TextField source={USER_TITLE_FIELD} />
-            </ReferenceField>
-          </Datagrid>
-        </ReferenceManyField>
-        <ReferenceManyField
-          reference="Booking"
-          target="userId"
-          label="Bookings"
-        >
-          <Datagrid rowClick="show">
-            <TextField
-              label="Cancellation Reason"
-              source="cancellationReason"
-            />
-            <DateField source="createdAt" label="Created At" />
-            <TextField label="Custom Inputs" source="customInputs" />
-            <ReferenceField
-              label="Daily Ref"
-              source="dailyeventreference.id"
-              reference="DailyEventReference"
-            >
-              <TextField source={DAILYEVENTREFERENCE_TITLE_FIELD} />
-            </ReferenceField>
-            <TextField label="Description" source="description" />
-            <ReferenceField
-              label="Destination Calendar"
-              source="destinationcalendar.id"
-              reference="DestinationCalendar"
-            >
-              <TextField source={DESTINATIONCALENDAR_TITLE_FIELD} />
-            </ReferenceField>
-            <TextField
-              label="Dynamic Event Slug Ref"
-              source="dynamicEventSlugRef"
-            />
-            <TextField
-              label="Dynamic Group Slug Ref"
-              source="dynamicGroupSlugRef"
-            />
-            <TextField label="End Time" source="endTime" />
-            <ReferenceField
-              label="Event Type"
-              source="eventtype.id"
-              reference="EventType"
-            >
-              <TextField source={EVENTTYPE_TITLE_FIELD} />
-            </ReferenceField>
-            <TextField label="From Reschedule" source="fromReschedule" />
-            <TextField label="ID" source="id" />
-            <TextField label="Location" source="location" />
-            <BooleanField label="Paid" source="paid" />
-            <TextField label="Recurring Event Id" source="recurringEventId" />
-            <TextField label="Rejection Reason" source="rejectionReason" />
-            <BooleanField label="Rescheduled" source="rescheduled" />
-            <TextField label="Sms Reminder Number" source="smsReminderNumber" />
-            <TextField label="Start Time" source="startTime" />
-            <TextField label="Status" source="status" />
-            <TextField label="Title" source="title" />
-            <TextField label="Uid" source="uid" />
-            <TextField label="Updated At" source="updatedAt" />
             <ReferenceField label="User" source="user.id" reference="User">
               <TextField source={USER_TITLE_FIELD} />
             </ReferenceField>
@@ -343,9 +281,7 @@ export const UserShow = (props: ShowProps): React.ReactElement => {
             <BooleanField label="Accepted" source="accepted" />
             <TextField label="ID" source="id" />
             <TextField label="Role" source="role" />
-            <ReferenceField label="Team" source="team.id" reference="Team">
-              <TextField source={TEAM_TITLE_FIELD} />
-            </ReferenceField>
+            <TextField label="Team" source="team" />
             <ReferenceField label="User" source="user.id" reference="User">
               <TextField source={USER_TITLE_FIELD} />
             </ReferenceField>

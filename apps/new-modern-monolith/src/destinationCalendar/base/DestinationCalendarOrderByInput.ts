@@ -28,7 +28,7 @@ class DestinationCalendarOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  bookingId?: SortOrder;
+  booking?: SortOrder;
 
   @ApiProperty({
     required: false,

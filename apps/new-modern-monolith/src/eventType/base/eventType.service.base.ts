@@ -15,15 +15,12 @@ import {
   Prisma,
   EventType, // @ts-ignore
   Availability, // @ts-ignore
-  Booking, // @ts-ignore
   EventTypeCustomInput, // @ts-ignore
   User, // @ts-ignore
   Webhook, // @ts-ignore
   WorkflowsOnEventType, // @ts-ignore
   DestinationCalendar, // @ts-ignore
-  HashedLink, // @ts-ignore
-  Schedule, // @ts-ignore
-  Team,
+  Schedule,
 } from "@prisma/client";
 
 export class EventTypeServiceBase {
@@ -70,17 +67,6 @@ export class EventTypeServiceBase {
         where: { id: parentId },
       })
       .availability(args);
-  }
-
-  async findBookings(
-    parentId: number,
-    args: Prisma.BookingFindManyArgs
-  ): Promise<Booking[]> {
-    return this.prisma.eventType
-      .findUniqueOrThrow({
-        where: { id: parentId },
-      })
-      .bookings(args);
   }
 
   async findCustomInputs(
@@ -137,27 +123,11 @@ export class EventTypeServiceBase {
       .destinationCalendar();
   }
 
-  async getHashedLink(parentId: number): Promise<HashedLink | null> {
-    return this.prisma.eventType
-      .findUnique({
-        where: { id: parentId },
-      })
-      .hashedLink();
-  }
-
   async getSchedule(parentId: number): Promise<Schedule | null> {
     return this.prisma.eventType
       .findUnique({
         where: { id: parentId },
       })
       .schedule();
-  }
-
-  async getTeam(parentId: number): Promise<Team | null> {
-    return this.prisma.eventType
-      .findUnique({
-        where: { id: parentId },
-      })
-      .team();
   }
 }

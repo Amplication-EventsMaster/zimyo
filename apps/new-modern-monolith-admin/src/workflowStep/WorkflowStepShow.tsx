@@ -11,7 +11,6 @@ import {
   BooleanField,
 } from "react-admin";
 
-import { BOOKING_TITLE_FIELD } from "../booking/BookingTitle";
 import { WORKFLOWSTEP_TITLE_FIELD } from "./WorkflowStepTitle";
 import { WORKFLOW_TITLE_FIELD } from "../workflow/WorkflowTitle";
 
@@ -39,13 +38,7 @@ export const WorkflowStepShow = (props: ShowProps): React.ReactElement => {
           label="WorkflowReminders"
         >
           <Datagrid rowClick="show">
-            <ReferenceField
-              label="Booking"
-              source="booking.id"
-              reference="Booking"
-            >
-              <TextField source={BOOKING_TITLE_FIELD} />
-            </ReferenceField>
+            <TextField label="Booking" source="booking" />
             <TextField label="ID" source="id" />
             <TextField label="Method" source="method" />
             <TextField label="Reference Id" source="referenceId" />

@@ -11,11 +11,10 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsBoolean, IsEnum, ValidateNested } from "class-validator";
+import { IsBoolean, IsEnum, IsInt, ValidateNested } from "class-validator";
 import { EnumMembershipRole } from "./EnumMembershipRole";
-import { TeamWhereUniqueInput } from "../../team/base/TeamWhereUniqueInput";
-import { Type } from "class-transformer";
 import { UserWhereUniqueInput } from "../../user/base/UserWhereUniqueInput";
+import { Type } from "class-transformer";
 
 @InputType()
 class MembershipCreateInput {
@@ -37,12 +36,11 @@ class MembershipCreateInput {
 
   @ApiProperty({
     required: true,
-    type: () => TeamWhereUniqueInput,
+    type: Number,
   })
-  @ValidateNested()
-  @Type(() => TeamWhereUniqueInput)
-  @Field(() => TeamWhereUniqueInput)
-  team!: TeamWhereUniqueInput;
+  @IsInt()
+  @Field(() => Number)
+  team!: number;
 
   @ApiProperty({
     required: true,

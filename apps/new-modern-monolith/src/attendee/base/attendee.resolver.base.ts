@@ -20,7 +20,6 @@ import { AttendeeFindUniqueArgs } from "./AttendeeFindUniqueArgs";
 import { CreateAttendeeArgs } from "./CreateAttendeeArgs";
 import { UpdateAttendeeArgs } from "./UpdateAttendeeArgs";
 import { DeleteAttendeeArgs } from "./DeleteAttendeeArgs";
-import { Booking } from "../../booking/base/Booking";
 import { AttendeeService } from "../attendee.service";
 @graphql.Resolver(() => Attendee)
 export class AttendeeResolverBase {
@@ -59,15 +58,7 @@ export class AttendeeResolverBase {
   ): Promise<Attendee> {
     return await this.service.createAttendee({
       ...args,
-      data: {
-        ...args.data,
-
-        booking: args.data.booking
-          ? {
-              connect: args.data.booking,
-            }
-          : undefined,
-      },
+      data: args.data,
     });
   }
 
@@ -78,15 +69,7 @@ export class AttendeeResolverBase {
     try {
       return await this.service.updateAttendee({
         ...args,
-        data: {
-          ...args.data,
-
-          booking: args.data.booking
-            ? {
-                connect: args.data.booking,
-              }
-            : undefined,
-        },
+        data: args.data,
       });
     } catch (error) {
       if (isRecordNotFoundError(error)) {
@@ -112,20 +95,5 @@ export class AttendeeResolverBase {
       }
       throw error;
     }
-  }
-
-  @graphql.ResolveField(() => Booking, {
-    nullable: true,
-    name: "booking",
-  })
-  async getBooking(
-    @graphql.Parent() parent: Attendee
-  ): Promise<Booking | null> {
-    const result = await this.service.getBooking(parent.id);
-
-    if (!result) {
-      return null;
-    }
-    return result;
   }
 }

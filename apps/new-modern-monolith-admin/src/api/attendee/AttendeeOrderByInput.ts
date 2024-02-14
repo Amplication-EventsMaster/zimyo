@@ -1,7 +1,7 @@
 import { SortOrder } from "../../util/SortOrder";
 
 export type AttendeeOrderByInput = {
-  bookingId?: SortOrder;
+  booking?: SortOrder;
   email?: SortOrder;
   id?: SortOrder;
   locale?: SortOrder;

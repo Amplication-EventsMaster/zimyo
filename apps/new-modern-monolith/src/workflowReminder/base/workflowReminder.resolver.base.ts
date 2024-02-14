@@ -20,7 +20,6 @@ import { WorkflowReminderFindUniqueArgs } from "./WorkflowReminderFindUniqueArgs
 import { CreateWorkflowReminderArgs } from "./CreateWorkflowReminderArgs";
 import { UpdateWorkflowReminderArgs } from "./UpdateWorkflowReminderArgs";
 import { DeleteWorkflowReminderArgs } from "./DeleteWorkflowReminderArgs";
-import { Booking } from "../../booking/base/Booking";
 import { WorkflowStep } from "../../workflowStep/base/WorkflowStep";
 import { WorkflowReminderService } from "../workflowReminder.service";
 @graphql.Resolver(() => WorkflowReminder)
@@ -63,12 +62,6 @@ export class WorkflowReminderResolverBase {
       data: {
         ...args.data,
 
-        booking: args.data.booking
-          ? {
-              connect: args.data.booking,
-            }
-          : undefined,
-
         workflowStep: {
           connect: args.data.workflowStep,
         },
@@ -85,12 +78,6 @@ export class WorkflowReminderResolverBase {
         ...args,
         data: {
           ...args.data,
-
-          booking: args.data.booking
-            ? {
-                connect: args.data.booking,
-              }
-            : undefined,
 
           workflowStep: {
             connect: args.data.workflowStep,
@@ -121,21 +108,6 @@ export class WorkflowReminderResolverBase {
       }
       throw error;
     }
-  }
-
-  @graphql.ResolveField(() => Booking, {
-    nullable: true,
-    name: "booking",
-  })
-  async getBooking(
-    @graphql.Parent() parent: WorkflowReminder
-  ): Promise<Booking | null> {
-    const result = await this.service.getBooking(parent.id);
-
-    if (!result) {
-      return null;
-    }
-    return result;
   }
 
   @graphql.ResolveField(() => WorkflowStep, {

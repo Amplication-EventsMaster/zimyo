@@ -230,11 +230,7 @@ export class CredentialControllerBase {
     const results = await this.service.findDestinationCalendars(params.id, {
       ...query,
       select: {
-        booking: {
-          select: {
-            id: true,
-          },
-        },
+        booking: true,
 
         credential: {
           select: {

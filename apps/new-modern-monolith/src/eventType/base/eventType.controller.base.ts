@@ -25,9 +25,6 @@ import { EventTypeUpdateInput } from "./EventTypeUpdateInput";
 import { AvailabilityFindManyArgs } from "../../availability/base/AvailabilityFindManyArgs";
 import { Availability } from "../../availability/base/Availability";
 import { AvailabilityWhereUniqueInput } from "../../availability/base/AvailabilityWhereUniqueInput";
-import { BookingFindManyArgs } from "../../booking/base/BookingFindManyArgs";
-import { Booking } from "../../booking/base/Booking";
-import { BookingWhereUniqueInput } from "../../booking/base/BookingWhereUniqueInput";
 import { EventTypeCustomInputFindManyArgs } from "../../eventTypeCustomInput/base/EventTypeCustomInputFindManyArgs";
 import { EventTypeCustomInput } from "../../eventTypeCustomInput/base/EventTypeCustomInput";
 import { EventTypeCustomInputWhereUniqueInput } from "../../eventTypeCustomInput/base/EventTypeCustomInputWhereUniqueInput";
@@ -58,27 +55,16 @@ export class EventTypeControllerBase {
             }
           : undefined,
 
-        hashedLink: data.hashedLink
-          ? {
-              connect: data.hashedLink,
-            }
-          : undefined,
-
         schedule: data.schedule
           ? {
               connect: data.schedule,
-            }
-          : undefined,
-
-        team: data.team
-          ? {
-              connect: data.team,
             }
           : undefined,
       },
       select: {
         afterEventBuffer: true,
         beforeEventBuffer: true,
+        bookings: true,
         currency: true,
         description: true,
 
@@ -90,13 +76,7 @@ export class EventTypeControllerBase {
 
         disableGuests: true,
         eventName: true,
-
-        hashedLink: {
-          select: {
-            id: true,
-          },
-        },
-
+        hashedLink: true,
         hidden: true,
         hideCalendarNotes: true,
         id: true,
@@ -125,13 +105,7 @@ export class EventTypeControllerBase {
         slotInterval: true,
         slug: true,
         successRedirectUrl: true,
-
-        team: {
-          select: {
-            id: true,
-          },
-        },
-
+        team: true,
         timeZone: true,
         title: true,
         userId: true,
@@ -149,6 +123,7 @@ export class EventTypeControllerBase {
       select: {
         afterEventBuffer: true,
         beforeEventBuffer: true,
+        bookings: true,
         currency: true,
         description: true,
 
@@ -160,13 +135,7 @@ export class EventTypeControllerBase {
 
         disableGuests: true,
         eventName: true,
-
-        hashedLink: {
-          select: {
-            id: true,
-          },
-        },
-
+        hashedLink: true,
         hidden: true,
         hideCalendarNotes: true,
         id: true,
@@ -195,13 +164,7 @@ export class EventTypeControllerBase {
         slotInterval: true,
         slug: true,
         successRedirectUrl: true,
-
-        team: {
-          select: {
-            id: true,
-          },
-        },
-
+        team: true,
         timeZone: true,
         title: true,
         userId: true,
@@ -220,6 +183,7 @@ export class EventTypeControllerBase {
       select: {
         afterEventBuffer: true,
         beforeEventBuffer: true,
+        bookings: true,
         currency: true,
         description: true,
 
@@ -231,13 +195,7 @@ export class EventTypeControllerBase {
 
         disableGuests: true,
         eventName: true,
-
-        hashedLink: {
-          select: {
-            id: true,
-          },
-        },
-
+        hashedLink: true,
         hidden: true,
         hideCalendarNotes: true,
         id: true,
@@ -266,13 +224,7 @@ export class EventTypeControllerBase {
         slotInterval: true,
         slug: true,
         successRedirectUrl: true,
-
-        team: {
-          select: {
-            id: true,
-          },
-        },
-
+        team: true,
         timeZone: true,
         title: true,
         userId: true,
@@ -305,27 +257,16 @@ export class EventTypeControllerBase {
               }
             : undefined,
 
-          hashedLink: data.hashedLink
-            ? {
-                connect: data.hashedLink,
-              }
-            : undefined,
-
           schedule: data.schedule
             ? {
                 connect: data.schedule,
-              }
-            : undefined,
-
-          team: data.team
-            ? {
-                connect: data.team,
               }
             : undefined,
         },
         select: {
           afterEventBuffer: true,
           beforeEventBuffer: true,
+          bookings: true,
           currency: true,
           description: true,
 
@@ -337,13 +278,7 @@ export class EventTypeControllerBase {
 
           disableGuests: true,
           eventName: true,
-
-          hashedLink: {
-            select: {
-              id: true,
-            },
-          },
-
+          hashedLink: true,
           hidden: true,
           hideCalendarNotes: true,
           id: true,
@@ -372,13 +307,7 @@ export class EventTypeControllerBase {
           slotInterval: true,
           slug: true,
           successRedirectUrl: true,
-
-          team: {
-            select: {
-              id: true,
-            },
-          },
-
+          team: true,
           timeZone: true,
           title: true,
           userId: true,
@@ -406,6 +335,7 @@ export class EventTypeControllerBase {
         select: {
           afterEventBuffer: true,
           beforeEventBuffer: true,
+          bookings: true,
           currency: true,
           description: true,
 
@@ -417,13 +347,7 @@ export class EventTypeControllerBase {
 
           disableGuests: true,
           eventName: true,
-
-          hashedLink: {
-            select: {
-              id: true,
-            },
-          },
-
+          hashedLink: true,
           hidden: true,
           hideCalendarNotes: true,
           id: true,
@@ -452,13 +376,7 @@ export class EventTypeControllerBase {
           slotInterval: true,
           slug: true,
           successRedirectUrl: true,
-
-          team: {
-            select: {
-              id: true,
-            },
-          },
-
+          team: true,
           timeZone: true,
           title: true,
           userId: true,
@@ -570,124 +488,6 @@ export class EventTypeControllerBase {
     });
   }
 
-  @common.Get("/:id/bookings")
-  @ApiNestedQuery(BookingFindManyArgs)
-  async findBookings(
-    @common.Req() request: Request,
-    @common.Param() params: EventTypeWhereUniqueInput
-  ): Promise<Booking[]> {
-    const query = plainToClass(BookingFindManyArgs, request.query);
-    const results = await this.service.findBookings(params.id, {
-      ...query,
-      select: {
-        cancellationReason: true,
-        createdAt: true,
-        customInputs: true,
-
-        dailyRef: {
-          select: {
-            id: true,
-          },
-        },
-
-        description: true,
-
-        destinationCalendar: {
-          select: {
-            id: true,
-          },
-        },
-
-        dynamicEventSlugRef: true,
-        dynamicGroupSlugRef: true,
-        endTime: true,
-
-        eventType: {
-          select: {
-            id: true,
-          },
-        },
-
-        fromReschedule: true,
-        id: true,
-        location: true,
-        paid: true,
-        recurringEventId: true,
-        rejectionReason: true,
-        rescheduled: true,
-        smsReminderNumber: true,
-        startTime: true,
-        status: true,
-        title: true,
-        uid: true,
-        updatedAt: true,
-
-        user: {
-          select: {
-            id: true,
-          },
-        },
-      },
-    });
-    if (results === null) {
-      throw new errors.NotFoundException(
-        `No resource was found for ${JSON.stringify(params)}`
-      );
-    }
-    return results;
-  }
-
-  @common.Post("/:id/bookings")
-  async connectBookings(
-    @common.Param() params: EventTypeWhereUniqueInput,
-    @common.Body() body: BookingWhereUniqueInput[]
-  ): Promise<void> {
-    const data = {
-      bookings: {
-        connect: body,
-      },
-    };
-    await this.service.updateEventType({
-      where: params,
-      data,
-      select: { id: true },
-    });
-  }
-
-  @common.Patch("/:id/bookings")
-  async updateBookings(
-    @common.Param() params: EventTypeWhereUniqueInput,
-    @common.Body() body: BookingWhereUniqueInput[]
-  ): Promise<void> {
-    const data = {
-      bookings: {
-        set: body,
-      },
-    };
-    await this.service.updateEventType({
-      where: params,
-      data,
-      select: { id: true },
-    });
-  }
-
-  @common.Delete("/:id/bookings")
-  async disconnectBookings(
-    @common.Param() params: EventTypeWhereUniqueInput,
-    @common.Body() body: BookingWhereUniqueInput[]
-  ): Promise<void> {
-    const data = {
-      bookings: {
-        disconnect: body,
-      },
-    };
-    await this.service.updateEventType({
-      where: params,
-      data,
-      select: { id: true },
-    });
-  }
-
   @common.Get("/:id/customInputs")
   @ApiNestedQuery(EventTypeCustomInputFindManyArgs)
   async findCustomInputs(
@@ -784,6 +584,7 @@ export class EventTypeControllerBase {
         avatar: true,
         away: true,
         bio: true,
+        bookings: true,
         brandColor: true,
         bufferTime: true,
         completedOnboarding: true,

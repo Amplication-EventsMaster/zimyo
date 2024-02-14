@@ -1,7 +1,7 @@
 import { SortOrder } from "../../util/SortOrder";
 
 export type WorkflowReminderOrderByInput = {
-  bookingUid?: SortOrder;
+  booking?: SortOrder;
   id?: SortOrder;
   method?: SortOrder;
   referenceId?: SortOrder;

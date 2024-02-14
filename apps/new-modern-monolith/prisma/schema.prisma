@@ -11,14 +11,14 @@ model EventType {
   afterEventBuffer        Int                          @default(0)
   availability            Availability[]
   beforeEventBuffer       Int                          @default(0)
-  bookings                Booking[]
+  bookings                Json?
   currency                String                       @default("usd")
   customInputs            EventTypeCustomInput[]
   description             String?
   destinationCalendar     DestinationCalendar?
   disableGuests           Boolean                      @default(false)
   eventName               String?
-  hashedLink              HashedLink?
+  hashedLink              Int?
   hidden                  Boolean                      @default(false)
   hideCalendarNotes       Boolean                      @default(false)
   id                      Int                          @id @default(autoincrement())
@@ -42,8 +42,7 @@ model EventType {
   slotInterval            Int?
   slug                    String
   successRedirectUrl      String?
-  team                    Team?                        @relation(fields: [teamId], references: [id])
-  teamId                  Int?
+  team                    Int?
   timeZone                String?
   title                   String
   userId                  Int?
@@ -67,8 +66,7 @@ model Credential {
 }
 
 model DestinationCalendar {
-  booking      Booking?    @relation(fields: [bookingId], references: [id])
-  bookingId    Int?        @unique
+  booking      Int?
   credential   Credential? @relation(fields: [credentialId], references: [id])
   credentialId Int?
   eventType    EventType?  @relation(fields: [eventTypeId], references: [id])
@@ -88,7 +86,7 @@ model User {
   avatar               String?
   away                 Boolean                  @default(false)
   bio                  String?
-  bookings             Booking[]
+  bookings             Json?
   brandColor           String                   @default("#292929")
   bufferTime           Int                      @default(0)
   completedOnboarding  Boolean                  @default(false)
@@ -136,23 +134,11 @@ model User {
   @@map(name: "users")
 }
 
-model Team {
-  bio          String?
-  eventTypes   EventType[]
-  hideBranding Boolean      @default(false)
-  id           Int          @id @default(autoincrement())
-  logo         String?
-  members      Membership[]
-  name         String?
-  slug         String?      @unique
-}
-
 model Membership {
   accepted Boolean            @default(false)
   id       Int                @id @default(autoincrement())
   role     EnumMembershipRole
-  team     Team               @relation(fields: [teamId], references: [id])
-  teamId   Int
+  team     Int
   user     User               @relation(fields: [userId], references: [id])
   userId   Int
 
@@ -170,68 +156,13 @@ model VerificationToken {
   @@unique([identifier, token])
 }
 
-model BookingReference {
-  booking            Booking? @relation(fields: [bookingId], references: [id])
-  bookingId          Int?
-  deleted            Boolean?
-  externalCalendarId String?
-  id                 Int      @id @default(autoincrement())
-  meetingId          String?
-  meetingPassword    String?
-  meetingUrl         String?
-  typeField          String   @map("type")
-  uid                String
-}
-
 model Attendee {
-  booking   Booking? @relation(fields: [bookingId], references: [id])
-  bookingId Int?
-  email     String
-  id        Int      @id @default(autoincrement())
-  locale    String?  @default("en")
-  name      String
-  timeZone  String
-}
-
-model DailyEventReference {
-  booking    Booking? @relation(fields: [bookingId], references: [id])
-  bookingId  Int?     @unique
-  dailytoken String   @default("dailytoken")
-  dailyurl   String   @default("dailycallurl")
-  id         Int      @id @default(autoincrement())
-}
-
-model Booking {
-  attendees           Attendee[]
-  cancellationReason  String?
-  createdAt           DateTime             @default(now())
-  customInputs        Json?
-  dailyRef            DailyEventReference?
-  description         String?
-  destinationCalendar DestinationCalendar?
-  dynamicEventSlugRef String?
-  dynamicGroupSlugRef String?
-  endTime             DateTime
-  eventType           EventType?           @relation(fields: [eventTypeId], references: [id])
-  eventTypeId         Int?
-  fromReschedule      String?
-  id                  Int                  @id @default(autoincrement())
-  location            String?
-  paid                Boolean              @default(false)
-  payment             Payment[]
-  recurringEventId    String?
-  references          BookingReference[]
-  rejectionReason     String?
-  rescheduled         Boolean?
-  smsReminderNumber   String?
-  startTime           DateTime
-  status              EnumBookingStatus    @default(ACCEPTED)
-  title               String
-  uid                 String               @unique
-  updatedAt           DateTime?
-  user                User?                @relation(fields: [userId], references: [id])
-  userId              Int?
-  workflowReminders   WorkflowReminder[]
+  booking  Int?
+  email    String
+  id       Int     @id @default(autoincrement())
+  locale   String? @default("en")
+  name     String
+  timeZone String
 }
 
 model Schedule {
@@ -294,21 +225,6 @@ model ReminderMail {
   reminderType   EnumReminderMailReminderType
 }
 
-model Payment {
-  amount     Int
-  booking    Booking?        @relation(fields: [bookingId], references: [id])
-  bookingId  Int?
-  currency   String
-  data       Json
-  externalId String          @unique
-  fee        Int
-  id         Int             @id @default(autoincrement())
-  refunded   Boolean
-  success    Boolean
-  type       EnumPaymentType
-  uid        String          @unique
-}
-
 model Webhook {
   active          Boolean                    @default(true)
   appField        AppModel?                  @relation(fields: [appId], references: [id])
@@ -347,13 +263,6 @@ model ApiKey {
   note       String?
   user       User?     @relation(fields: [userId], references: [id])
   userId     Int?
-}
-
-model HashedLink {
-  eventType   EventType @relation(fields: [eventTypeId], references: [id])
-  eventTypeId Int       @unique
-  id          Int       @id @default(autoincrement())
-  link        String    @unique
 }
 
 model Account {
@@ -441,8 +350,7 @@ model WorkflowsOnEventType {
 }
 
 model WorkflowReminder {
-  booking        Booking?                   @relation(fields: [bookingUid], references: [id])
-  bookingUid     Int?
+  booking        Int?
   id             Int                        @id @default(autoincrement())
   method         EnumWorkflowReminderMethod
   referenceId    String?                    @unique
@@ -486,13 +394,6 @@ enum EnumMembershipRole {
   OWNER
 }
 
-enum EnumBookingStatus {
-  CANCELLED
-  ACCEPTED
-  REJECTED
-  PENDING
-}
-
 enum EnumEventTypeCustomInputType {
   TEXT
   TEXTLONG
@@ -502,10 +403,6 @@ enum EnumEventTypeCustomInputType {
 
 enum EnumReminderMailReminderType {
   PENDING_BOOKING_CONFIRMATION
-}
-
-enum EnumPaymentType {
-  STRIPE
 }
 
 enum EnumWebhookEventTriggers {

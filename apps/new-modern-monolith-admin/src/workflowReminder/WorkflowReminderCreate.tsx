@@ -4,14 +4,14 @@ import {
   Create,
   SimpleForm,
   CreateProps,
-  ReferenceInput,
+  NumberInput,
   SelectInput,
   TextInput,
   BooleanInput,
   DateTimeInput,
+  ReferenceInput,
 } from "react-admin";
 
-import { BookingTitle } from "../booking/BookingTitle";
 import { WorkflowStepTitle } from "../workflowStep/WorkflowStepTitle";
 
 export const WorkflowReminderCreate = (
@@ -20,9 +20,7 @@ export const WorkflowReminderCreate = (
   return (
     <Create {...props}>
       <SimpleForm>
-        <ReferenceInput source="booking.id" reference="Booking" label="Booking">
-          <SelectInput optionText={BookingTitle} />
-        </ReferenceInput>
+        <NumberInput step={1} label="Booking" source="booking" />
         <SelectInput
           source="method"
           label="Method"

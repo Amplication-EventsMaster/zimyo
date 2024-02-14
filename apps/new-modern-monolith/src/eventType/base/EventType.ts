@@ -22,17 +22,14 @@ import {
 } from "class-validator";
 import { Availability } from "../../availability/base/Availability";
 import { Type } from "class-transformer";
-import { Booking } from "../../booking/base/Booking";
-import { EventTypeCustomInput } from "../../eventTypeCustomInput/base/EventTypeCustomInput";
-import { DestinationCalendar } from "../../destinationCalendar/base/DestinationCalendar";
-import { HashedLink } from "../../hashedLink/base/HashedLink";
 import { IsJSONValue } from "../../validators";
 import { GraphQLJSON } from "graphql-type-json";
 import { JsonValue } from "type-fest";
+import { EventTypeCustomInput } from "../../eventTypeCustomInput/base/EventTypeCustomInput";
+import { DestinationCalendar } from "../../destinationCalendar/base/DestinationCalendar";
 import { EnumEventTypePeriodType } from "./EnumEventTypePeriodType";
 import { Schedule } from "../../schedule/base/Schedule";
 import { EnumEventTypeSchedulingType } from "./EnumEventTypeSchedulingType";
-import { Team } from "../../team/base/Team";
 import { User } from "../../user/base/User";
 import { Webhook } from "../../webhook/base/Webhook";
 import { WorkflowsOnEventType } from "../../workflowsOnEventType/base/WorkflowsOnEventType";
@@ -66,12 +63,13 @@ class EventType {
 
   @ApiProperty({
     required: false,
-    type: () => [Booking],
   })
-  @ValidateNested()
-  @Type(() => Booking)
+  @IsJSONValue()
   @IsOptional()
-  bookings?: Array<Booking>;
+  @Field(() => GraphQLJSON, {
+    nullable: true,
+  })
+  bookings!: JsonValue;
 
   @ApiProperty({
     required: true,
@@ -131,12 +129,14 @@ class EventType {
 
   @ApiProperty({
     required: false,
-    type: () => HashedLink,
+    type: Number,
   })
-  @ValidateNested()
-  @Type(() => HashedLink)
+  @IsInt()
   @IsOptional()
-  hashedLink?: HashedLink | null;
+  @Field(() => Number, {
+    nullable: true,
+  })
+  hashedLink!: number | null;
 
   @ApiProperty({
     required: true,
@@ -349,12 +349,14 @@ class EventType {
 
   @ApiProperty({
     required: false,
-    type: () => Team,
+    type: Number,
   })
-  @ValidateNested()
-  @Type(() => Team)
+  @IsInt()
   @IsOptional()
-  team?: Team | null;
+  @Field(() => Number, {
+    nullable: true,
+  })
+  team!: number | null;
 
   @ApiProperty({
     required: false,

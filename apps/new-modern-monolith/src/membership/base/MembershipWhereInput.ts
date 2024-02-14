@@ -16,7 +16,6 @@ import { Type } from "class-transformer";
 import { IsOptional, IsEnum, ValidateNested } from "class-validator";
 import { IntFilter } from "../../util/IntFilter";
 import { EnumMembershipRole } from "./EnumMembershipRole";
-import { TeamWhereUniqueInput } from "../../team/base/TeamWhereUniqueInput";
 import { UserWhereUniqueInput } from "../../user/base/UserWhereUniqueInput";
 
 @InputType()
@@ -56,15 +55,14 @@ class MembershipWhereInput {
 
   @ApiProperty({
     required: false,
-    type: () => TeamWhereUniqueInput,
+    type: IntFilter,
   })
-  @ValidateNested()
-  @Type(() => TeamWhereUniqueInput)
+  @Type(() => IntFilter)
   @IsOptional()
-  @Field(() => TeamWhereUniqueInput, {
+  @Field(() => IntFilter, {
     nullable: true,
   })
-  team?: TeamWhereUniqueInput;
+  team?: IntFilter;
 
   @ApiProperty({
     required: false,

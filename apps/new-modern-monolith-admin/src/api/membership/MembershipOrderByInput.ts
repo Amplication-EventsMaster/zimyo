@@ -4,6 +4,6 @@ export type MembershipOrderByInput = {
   accepted?: SortOrder;
   id?: SortOrder;
   role?: SortOrder;
-  teamId?: SortOrder;
+  team?: SortOrder;
   userId?: SortOrder;
 };

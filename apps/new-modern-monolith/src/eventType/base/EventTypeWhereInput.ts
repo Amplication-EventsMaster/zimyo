@@ -15,21 +15,18 @@ import { IntFilter } from "../../util/IntFilter";
 import { Type } from "class-transformer";
 import { IsOptional, ValidateNested, IsEnum } from "class-validator";
 import { AvailabilityListRelationFilter } from "../../availability/base/AvailabilityListRelationFilter";
-import { BookingListRelationFilter } from "../../booking/base/BookingListRelationFilter";
+import { JsonFilter } from "../../util/JsonFilter";
 import { StringFilter } from "../../util/StringFilter";
 import { EventTypeCustomInputListRelationFilter } from "../../eventTypeCustomInput/base/EventTypeCustomInputListRelationFilter";
 import { StringNullableFilter } from "../../util/StringNullableFilter";
 import { DestinationCalendarWhereUniqueInput } from "../../destinationCalendar/base/DestinationCalendarWhereUniqueInput";
 import { BooleanFilter } from "../../util/BooleanFilter";
-import { HashedLinkWhereUniqueInput } from "../../hashedLink/base/HashedLinkWhereUniqueInput";
-import { JsonFilter } from "../../util/JsonFilter";
-import { BooleanNullableFilter } from "../../util/BooleanNullableFilter";
 import { IntNullableFilter } from "../../util/IntNullableFilter";
+import { BooleanNullableFilter } from "../../util/BooleanNullableFilter";
 import { DateTimeNullableFilter } from "../../util/DateTimeNullableFilter";
 import { EnumEventTypePeriodType } from "./EnumEventTypePeriodType";
 import { ScheduleWhereUniqueInput } from "../../schedule/base/ScheduleWhereUniqueInput";
 import { EnumEventTypeSchedulingType } from "./EnumEventTypeSchedulingType";
-import { TeamWhereUniqueInput } from "../../team/base/TeamWhereUniqueInput";
 import { UserListRelationFilter } from "../../user/base/UserListRelationFilter";
 import { WebhookListRelationFilter } from "../../webhook/base/WebhookListRelationFilter";
 import { WorkflowsOnEventTypeListRelationFilter } from "../../workflowsOnEventType/base/WorkflowsOnEventTypeListRelationFilter";
@@ -72,15 +69,14 @@ class EventTypeWhereInput {
 
   @ApiProperty({
     required: false,
-    type: () => BookingListRelationFilter,
+    type: JsonFilter,
   })
-  @ValidateNested()
-  @Type(() => BookingListRelationFilter)
+  @Type(() => JsonFilter)
   @IsOptional()
-  @Field(() => BookingListRelationFilter, {
+  @Field(() => JsonFilter, {
     nullable: true,
   })
-  bookings?: BookingListRelationFilter;
+  bookings?: JsonFilter;
 
   @ApiProperty({
     required: false,
@@ -152,15 +148,14 @@ class EventTypeWhereInput {
 
   @ApiProperty({
     required: false,
-    type: () => HashedLinkWhereUniqueInput,
+    type: IntNullableFilter,
   })
-  @ValidateNested()
-  @Type(() => HashedLinkWhereUniqueInput)
+  @Type(() => IntNullableFilter)
   @IsOptional()
-  @Field(() => HashedLinkWhereUniqueInput, {
+  @Field(() => IntNullableFilter, {
     nullable: true,
   })
-  hashedLink?: HashedLinkWhereUniqueInput;
+  hashedLink?: IntNullableFilter;
 
   @ApiProperty({
     required: false,
@@ -407,15 +402,14 @@ class EventTypeWhereInput {
 
   @ApiProperty({
     required: false,
-    type: () => TeamWhereUniqueInput,
+    type: IntNullableFilter,
   })
-  @ValidateNested()
-  @Type(() => TeamWhereUniqueInput)
+  @Type(() => IntNullableFilter)
   @IsOptional()
-  @Field(() => TeamWhereUniqueInput, {
+  @Field(() => IntNullableFilter, {
     nullable: true,
   })
-  team?: TeamWhereUniqueInput;
+  team?: IntNullableFilter;
 
   @ApiProperty({
     required: false,

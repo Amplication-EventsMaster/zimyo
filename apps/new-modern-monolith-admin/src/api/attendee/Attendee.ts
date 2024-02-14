@@ -1,7 +1,5 @@
-import { Booking } from "../booking/Booking";
-
 export type Attendee = {
-  booking?: Booking | null;
+  booking: number | null;
   email: string;
   id: number;
   locale: string | null;

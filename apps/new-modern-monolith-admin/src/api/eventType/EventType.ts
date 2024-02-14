@@ -1,11 +1,8 @@
 import { Availability } from "../availability/Availability";
-import { Booking } from "../booking/Booking";
+import { JsonValue } from "type-fest";
 import { EventTypeCustomInput } from "../eventTypeCustomInput/EventTypeCustomInput";
 import { DestinationCalendar } from "../destinationCalendar/DestinationCalendar";
-import { HashedLink } from "../hashedLink/HashedLink";
-import { JsonValue } from "type-fest";
 import { Schedule } from "../schedule/Schedule";
-import { Team } from "../team/Team";
 import { User } from "../user/User";
 import { Webhook } from "../webhook/Webhook";
 import { WorkflowsOnEventType } from "../workflowsOnEventType/WorkflowsOnEventType";
@@ -14,14 +11,14 @@ export type EventType = {
   afterEventBuffer: number;
   availability?: Array<Availability>;
   beforeEventBuffer: number;
-  bookings?: Array<Booking>;
+  bookings: JsonValue;
   currency: string;
   customInputs?: Array<EventTypeCustomInput>;
   description: string | null;
   destinationCalendar?: DestinationCalendar | null;
   disableGuests: boolean;
   eventName: string | null;
-  hashedLink?: HashedLink | null;
+  hashedLink: number | null;
   hidden: boolean;
   hideCalendarNotes: boolean;
   id: number;
@@ -44,7 +41,7 @@ export type EventType = {
   slotInterval: number | null;
   slug: string;
   successRedirectUrl: string | null;
-  team?: Team | null;
+  team: number | null;
   timeZone: string | null;
   title: string;
   userId: number | null;

@@ -17,7 +17,6 @@ import {
   Account, // @ts-ignore
   ApiKey, // @ts-ignore
   Availability, // @ts-ignore
-  Booking, // @ts-ignore
   Credential, // @ts-ignore
   EventType, // @ts-ignore
   Feedback, // @ts-ignore
@@ -97,17 +96,6 @@ export class UserServiceBase {
         where: { id: parentId },
       })
       .availability(args);
-  }
-
-  async findBookings(
-    parentId: number,
-    args: Prisma.BookingFindManyArgs
-  ): Promise<Booking[]> {
-    return this.prisma.user
-      .findUniqueOrThrow({
-        where: { id: parentId },
-      })
-      .bookings(args);
   }
 
   async findCredentials(

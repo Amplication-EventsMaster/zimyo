@@ -14,7 +14,6 @@ import { PrismaService } from "../../prisma/prisma.service";
 import {
   Prisma,
   Membership, // @ts-ignore
-  Team, // @ts-ignore
   User,
 } from "@prisma/client";
 
@@ -51,14 +50,6 @@ export class MembershipServiceBase {
     args: Prisma.SelectSubset<T, Prisma.MembershipDeleteArgs>
   ): Promise<Membership> {
     return this.prisma.membership.delete(args);
-  }
-
-  async getTeam(parentId: number): Promise<Team | null> {
-    return this.prisma.membership
-      .findUnique({
-        where: { id: parentId },
-      })
-      .team();
   }
 
   async getUser(parentId: number): Promise<User | null> {

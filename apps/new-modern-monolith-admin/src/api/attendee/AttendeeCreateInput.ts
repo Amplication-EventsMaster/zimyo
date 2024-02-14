@@ -1,7 +1,5 @@
-import { BookingWhereUniqueInput } from "../booking/BookingWhereUniqueInput";
-
 export type AttendeeCreateInput = {
-  booking?: BookingWhereUniqueInput | null;
+  booking?: number | null;
   email: string;
   locale?: string | null;
   name: string;
