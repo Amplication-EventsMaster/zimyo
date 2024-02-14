@@ -1,0 +1,35 @@
+import { JsonValue } from "type-fest";
+import { DailyEventReference } from "../dailyEventReference/DailyEventReference";
+import { Payment } from "../payment/Payment";
+import { BookingReference } from "../bookingReference/BookingReference";
+
+export type Booking = {
+  attendees: JsonValue;
+  cancellationReason: string | null;
+  createdAt: Date;
+  customInputs: JsonValue;
+  dailyRef?: DailyEventReference | null;
+  description: string | null;
+  destinationCalendarId: number | null;
+  dynamicEventSlugRef: string | null;
+  dynamicGroupSlugRef: string | null;
+  endTime: Date;
+  eventTypeId: number | null;
+  fromReschedule: string | null;
+  id: number;
+  location: string | null;
+  paid: boolean;
+  payment?: Array<Payment>;
+  recurringEventId: string | null;
+  references?: Array<BookingReference>;
+  rejectionReason: string | null;
+  rescheduled: boolean | null;
+  smsReminderNumber: string | null;
+  startTime: Date;
+  status?: "CANCELLED" | "ACCEPTED" | "REJECTED" | "PENDING";
+  title: string;
+  uid: string;
+  updatedAt: Date | null;
+  userId: number | null;
+  workflowReminders: JsonValue;
+};
