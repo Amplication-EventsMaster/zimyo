@@ -24,16 +24,15 @@ import {
 import { Type } from "class-transformer";
 import { ApiKeyUpdateManyWithoutUsersInput } from "./ApiKeyUpdateManyWithoutUsersInput";
 import { AvailabilityUpdateManyWithoutUsersInput } from "./AvailabilityUpdateManyWithoutUsersInput";
-import { BookingUpdateManyWithoutUsersInput } from "./BookingUpdateManyWithoutUsersInput";
+import { IsJSONValue } from "../../validators";
+import { GraphQLJSON } from "graphql-type-json";
+import { InputJsonValue } from "../../types";
 import { CredentialUpdateManyWithoutUsersInput } from "./CredentialUpdateManyWithoutUsersInput";
 import { DestinationCalendarWhereUniqueInput } from "../../destinationCalendar/base/DestinationCalendarWhereUniqueInput";
 import { EventTypeUpdateManyWithoutUsersInput } from "./EventTypeUpdateManyWithoutUsersInput";
 import { FeedbackUpdateManyWithoutUsersInput } from "./FeedbackUpdateManyWithoutUsersInput";
 import { EnumUserIdentityProvider } from "./EnumUserIdentityProvider";
 import { ImpersonationUpdateManyWithoutUsersInput } from "./ImpersonationUpdateManyWithoutUsersInput";
-import { IsJSONValue } from "../../validators";
-import { GraphQLJSON } from "graphql-type-json";
-import { InputJsonValue } from "../../types";
 import { EnumUserPlan } from "./EnumUserPlan";
 import { EnumUserRole } from "./EnumUserRole";
 import { ScheduleUpdateManyWithoutUsersInput } from "./ScheduleUpdateManyWithoutUsersInput";
@@ -127,15 +126,13 @@ class UserUpdateInput {
 
   @ApiProperty({
     required: false,
-    type: () => BookingUpdateManyWithoutUsersInput,
   })
-  @ValidateNested()
-  @Type(() => BookingUpdateManyWithoutUsersInput)
+  @IsJSONValue()
   @IsOptional()
-  @Field(() => BookingUpdateManyWithoutUsersInput, {
+  @Field(() => GraphQLJSON, {
     nullable: true,
   })
-  bookings?: BookingUpdateManyWithoutUsersInput;
+  bookings?: InputJsonValue;
 
   @ApiProperty({
     required: false,

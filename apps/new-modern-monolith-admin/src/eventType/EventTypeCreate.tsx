@@ -15,12 +15,9 @@ import {
 } from "react-admin";
 
 import { AvailabilityTitle } from "../availability/AvailabilityTitle";
-import { BookingTitle } from "../booking/BookingTitle";
 import { EventTypeCustomInputTitle } from "../eventTypeCustomInput/EventTypeCustomInputTitle";
 import { DestinationCalendarTitle } from "../destinationCalendar/DestinationCalendarTitle";
-import { HashedLinkTitle } from "../hashedLink/HashedLinkTitle";
 import { ScheduleTitle } from "../schedule/ScheduleTitle";
-import { TeamTitle } from "../team/TeamTitle";
 import { UserTitle } from "../user/UserTitle";
 import { WebhookTitle } from "../webhook/WebhookTitle";
 import { WorkflowsOnEventTypeTitle } from "../workflowsOnEventType/WorkflowsOnEventTypeTitle";
@@ -47,14 +44,7 @@ export const EventTypeCreate = (props: CreateProps): React.ReactElement => {
           label="Before Event Buffer"
           source="beforeEventBuffer"
         />
-        <ReferenceArrayInput
-          source="bookings"
-          reference="Booking"
-          parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
-          format={(value: any) => value && value.map((v: any) => v.id)}
-        >
-          <SelectArrayInput optionText={BookingTitle} />
-        </ReferenceArrayInput>
+        <div />
         <TextInput label="Currency" source="currency" />
         <ReferenceArrayInput
           source="customInputs"
@@ -74,13 +64,7 @@ export const EventTypeCreate = (props: CreateProps): React.ReactElement => {
         </ReferenceInput>
         <BooleanInput label="Disable Guests" source="disableGuests" />
         <TextInput label="Event Name" source="eventName" />
-        <ReferenceInput
-          source="hashedLink.id"
-          reference="HashedLink"
-          label="Hashed Link"
-        >
-          <SelectInput optionText={HashedLinkTitle} />
-        </ReferenceInput>
+        <NumberInput step={1} label="Hashed Link" source="hashedLink" />
         <BooleanInput label="Hidden" source="hidden" />
         <BooleanInput label="Hide Calendar Notes" source="hideCalendarNotes" />
         <NumberInput step={1} label="Length" source="length" />
@@ -142,9 +126,7 @@ export const EventTypeCreate = (props: CreateProps): React.ReactElement => {
         <NumberInput step={1} label="Slot Interval" source="slotInterval" />
         <TextInput label="Slug" source="slug" />
         <TextInput label="Success Redirect Url" source="successRedirectUrl" />
-        <ReferenceInput source="team.id" reference="Team" label="Team">
-          <SelectInput optionText={TeamTitle} />
-        </ReferenceInput>
+        <NumberInput step={1} label="Team" source="team" />
         <TextInput label="Time Zone" source="timeZone" />
         <TextInput label="Title" source="title" />
         <NumberInput step={1} label="User Id" source="userId" />

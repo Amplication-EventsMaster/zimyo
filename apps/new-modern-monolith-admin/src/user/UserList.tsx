@@ -30,6 +30,7 @@ export const UserList = (props: ListProps): React.ReactElement => {
         <TextField label="Avatar" source="avatar" />
         <BooleanField label="Away" source="away" />
         <TextField label="Bio" source="bio" />
+        <TextField label="Bookings" source="bookings" />
         <TextField label="Brand Color" source="brandColor" />
         <TextField label="Buffer Time" source="bufferTime" />
         <BooleanField

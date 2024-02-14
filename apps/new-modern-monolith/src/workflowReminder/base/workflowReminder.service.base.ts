@@ -14,7 +14,6 @@ import { PrismaService } from "../../prisma/prisma.service";
 import {
   Prisma,
   WorkflowReminder, // @ts-ignore
-  Booking, // @ts-ignore
   WorkflowStep,
 } from "@prisma/client";
 
@@ -51,14 +50,6 @@ export class WorkflowReminderServiceBase {
     args: Prisma.SelectSubset<T, Prisma.WorkflowReminderDeleteArgs>
   ): Promise<WorkflowReminder> {
     return this.prisma.workflowReminder.delete(args);
-  }
-
-  async getBooking(parentId: number): Promise<Booking | null> {
-    return this.prisma.workflowReminder
-      .findUnique({
-        where: { id: parentId },
-      })
-      .booking();
   }
 
   async getWorkflowStep(parentId: number): Promise<WorkflowStep | null> {

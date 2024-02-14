@@ -31,22 +31,9 @@ export class AttendeeControllerBase {
     @common.Body() data: AttendeeCreateInput
   ): Promise<Attendee> {
     return await this.service.createAttendee({
-      data: {
-        ...data,
-
-        booking: data.booking
-          ? {
-              connect: data.booking,
-            }
-          : undefined,
-      },
+      data: data,
       select: {
-        booking: {
-          select: {
-            id: true,
-          },
-        },
-
+        booking: true,
         email: true,
         id: true,
         locale: true,
@@ -64,12 +51,7 @@ export class AttendeeControllerBase {
     return this.service.attendees({
       ...args,
       select: {
-        booking: {
-          select: {
-            id: true,
-          },
-        },
-
+        booking: true,
         email: true,
         id: true,
         locale: true,
@@ -88,12 +70,7 @@ export class AttendeeControllerBase {
     const result = await this.service.attendee({
       where: params,
       select: {
-        booking: {
-          select: {
-            id: true,
-          },
-        },
-
+        booking: true,
         email: true,
         id: true,
         locale: true,
@@ -119,22 +96,9 @@ export class AttendeeControllerBase {
     try {
       return await this.service.updateAttendee({
         where: params,
-        data: {
-          ...data,
-
-          booking: data.booking
-            ? {
-                connect: data.booking,
-              }
-            : undefined,
-        },
+        data: data,
         select: {
-          booking: {
-            select: {
-              id: true,
-            },
-          },
-
+          booking: true,
           email: true,
           id: true,
           locale: true,
@@ -162,12 +126,7 @@ export class AttendeeControllerBase {
       return await this.service.deleteAttendee({
         where: params,
         select: {
-          booking: {
-            select: {
-              id: true,
-            },
-          },
-
+          booking: true,
           email: true,
           id: true,
           locale: true,

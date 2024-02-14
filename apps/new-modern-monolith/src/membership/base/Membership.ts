@@ -13,9 +13,8 @@ import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import { IsBoolean, IsInt, IsEnum, ValidateNested } from "class-validator";
 import { EnumMembershipRole } from "./EnumMembershipRole";
-import { Team } from "../../team/base/Team";
-import { Type } from "class-transformer";
 import { User } from "../../user/base/User";
+import { Type } from "class-transformer";
 
 @ObjectType()
 class Membership {
@@ -47,11 +46,11 @@ class Membership {
 
   @ApiProperty({
     required: true,
-    type: () => Team,
+    type: Number,
   })
-  @ValidateNested()
-  @Type(() => Team)
-  team?: Team;
+  @IsInt()
+  @Field(() => Number)
+  team!: number;
 
   @ApiProperty({
     required: true,

@@ -1,13 +1,15 @@
 import * as React from "react";
+
 import {
   Edit,
   SimpleForm,
   EditProps,
+  NumberInput,
   ReferenceInput,
   SelectInput,
   TextInput,
 } from "react-admin";
-import { BookingTitle } from "../booking/BookingTitle";
+
 import { CredentialTitle } from "../credential/CredentialTitle";
 import { EventTypeTitle } from "../eventType/EventTypeTitle";
 import { UserTitle } from "../user/UserTitle";
@@ -18,9 +20,7 @@ export const DestinationCalendarEdit = (
   return (
     <Edit {...props}>
       <SimpleForm>
-        <ReferenceInput source="booking.id" reference="Booking" label="Booking">
-          <SelectInput optionText={BookingTitle} />
-        </ReferenceInput>
+        <NumberInput step={1} label="Booking" source="booking" />
         <ReferenceInput
           source="credential.id"
           reference="Credential"

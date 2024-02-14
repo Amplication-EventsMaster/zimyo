@@ -5,6 +5,7 @@ export type UserOrderByInput = {
   avatar?: SortOrder;
   away?: SortOrder;
   bio?: SortOrder;
+  bookings?: SortOrder;
   brandColor?: SortOrder;
   bufferTime?: SortOrder;
   completedOnboarding?: SortOrder;

@@ -34,12 +34,6 @@ export class DestinationCalendarControllerBase {
       data: {
         ...data,
 
-        booking: data.booking
-          ? {
-              connect: data.booking,
-            }
-          : undefined,
-
         credential: data.credential
           ? {
               connect: data.credential,
@@ -59,11 +53,7 @@ export class DestinationCalendarControllerBase {
           : undefined,
       },
       select: {
-        booking: {
-          select: {
-            id: true,
-          },
-        },
+        booking: true,
 
         credential: {
           select: {
@@ -100,11 +90,7 @@ export class DestinationCalendarControllerBase {
     return this.service.destinationCalendars({
       ...args,
       select: {
-        booking: {
-          select: {
-            id: true,
-          },
-        },
+        booking: true,
 
         credential: {
           select: {
@@ -140,11 +126,7 @@ export class DestinationCalendarControllerBase {
     const result = await this.service.destinationCalendar({
       where: params,
       select: {
-        booking: {
-          select: {
-            id: true,
-          },
-        },
+        booking: true,
 
         credential: {
           select: {
@@ -190,12 +172,6 @@ export class DestinationCalendarControllerBase {
         data: {
           ...data,
 
-          booking: data.booking
-            ? {
-                connect: data.booking,
-              }
-            : undefined,
-
           credential: data.credential
             ? {
                 connect: data.credential,
@@ -215,11 +191,7 @@ export class DestinationCalendarControllerBase {
             : undefined,
         },
         select: {
-          booking: {
-            select: {
-              id: true,
-            },
-          },
+          booking: true,
 
           credential: {
             select: {
@@ -264,11 +236,7 @@ export class DestinationCalendarControllerBase {
       return await this.service.deleteDestinationCalendar({
         where: params,
         select: {
-          booking: {
-            select: {
-              id: true,
-            },
-          },
+          booking: true,
 
           credential: {
             select: {

@@ -24,16 +24,15 @@ import {
 import { Type } from "class-transformer";
 import { ApiKeyCreateNestedManyWithoutUsersInput } from "./ApiKeyCreateNestedManyWithoutUsersInput";
 import { AvailabilityCreateNestedManyWithoutUsersInput } from "./AvailabilityCreateNestedManyWithoutUsersInput";
-import { BookingCreateNestedManyWithoutUsersInput } from "./BookingCreateNestedManyWithoutUsersInput";
+import { IsJSONValue } from "../../validators";
+import { GraphQLJSON } from "graphql-type-json";
+import { InputJsonValue } from "../../types";
 import { CredentialCreateNestedManyWithoutUsersInput } from "./CredentialCreateNestedManyWithoutUsersInput";
 import { DestinationCalendarWhereUniqueInput } from "../../destinationCalendar/base/DestinationCalendarWhereUniqueInput";
 import { EventTypeCreateNestedManyWithoutUsersInput } from "./EventTypeCreateNestedManyWithoutUsersInput";
 import { FeedbackCreateNestedManyWithoutUsersInput } from "./FeedbackCreateNestedManyWithoutUsersInput";
 import { EnumUserIdentityProvider } from "./EnumUserIdentityProvider";
 import { ImpersonationCreateNestedManyWithoutUsersInput } from "./ImpersonationCreateNestedManyWithoutUsersInput";
-import { IsJSONValue } from "../../validators";
-import { GraphQLJSON } from "graphql-type-json";
-import { InputJsonValue } from "../../types";
 import { EnumUserPlan } from "./EnumUserPlan";
 import { EnumUserRole } from "./EnumUserRole";
 import { ScheduleCreateNestedManyWithoutUsersInput } from "./ScheduleCreateNestedManyWithoutUsersInput";
@@ -124,15 +123,13 @@ class UserCreateInput {
 
   @ApiProperty({
     required: false,
-    type: () => BookingCreateNestedManyWithoutUsersInput,
   })
-  @ValidateNested()
-  @Type(() => BookingCreateNestedManyWithoutUsersInput)
+  @IsJSONValue()
   @IsOptional()
-  @Field(() => BookingCreateNestedManyWithoutUsersInput, {
+  @Field(() => GraphQLJSON, {
     nullable: true,
   })
-  bookings?: BookingCreateNestedManyWithoutUsersInput;
+  bookings?: InputJsonValue;
 
   @ApiProperty({
     required: true,

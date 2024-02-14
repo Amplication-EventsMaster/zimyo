@@ -1,13 +1,15 @@
 import * as React from "react";
+
 import {
   Create,
   SimpleForm,
   CreateProps,
   BooleanInput,
   SelectInput,
+  NumberInput,
   ReferenceInput,
 } from "react-admin";
-import { TeamTitle } from "../team/TeamTitle";
+
 import { UserTitle } from "../user/UserTitle";
 
 export const MembershipCreate = (props: CreateProps): React.ReactElement => {
@@ -26,9 +28,7 @@ export const MembershipCreate = (props: CreateProps): React.ReactElement => {
           optionText="label"
           optionValue="value"
         />
-        <ReferenceInput source="team.id" reference="Team" label="Team">
-          <SelectInput optionText={TeamTitle} />
-        </ReferenceInput>
+        <NumberInput step={1} label="Team" source="team" />
         <ReferenceInput source="user.id" reference="User" label="User">
           <SelectInput optionText={UserTitle} />
         </ReferenceInput>

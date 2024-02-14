@@ -3,19 +3,15 @@ import {
   Create,
   SimpleForm,
   CreateProps,
-  ReferenceInput,
-  SelectInput,
+  NumberInput,
   TextInput,
 } from "react-admin";
-import { BookingTitle } from "../booking/BookingTitle";
 
 export const AttendeeCreate = (props: CreateProps): React.ReactElement => {
   return (
     <Create {...props}>
       <SimpleForm>
-        <ReferenceInput source="booking.id" reference="Booking" label="Booking">
-          <SelectInput optionText={BookingTitle} />
-        </ReferenceInput>
+        <NumberInput step={1} label="Booking" source="booking" />
         <TextInput label="Email" source="email" />
         <TextInput label="Locale" source="locale" />
         <TextInput label="Name" source="name" />

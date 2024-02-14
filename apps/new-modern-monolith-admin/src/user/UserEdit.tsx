@@ -17,7 +17,6 @@ import {
 import { AccountTitle } from "../account/AccountTitle";
 import { ApiKeyTitle } from "../apiKey/ApiKeyTitle";
 import { AvailabilityTitle } from "../availability/AvailabilityTitle";
-import { BookingTitle } from "../booking/BookingTitle";
 import { CredentialTitle } from "../credential/CredentialTitle";
 import { DestinationCalendarTitle } from "../destinationCalendar/DestinationCalendarTitle";
 import { EventTypeTitle } from "../eventType/EventTypeTitle";
@@ -65,14 +64,7 @@ export const UserEdit = (props: EditProps): React.ReactElement => {
         <TextInput label="Avatar" source="avatar" />
         <BooleanInput label="Away" source="away" />
         <TextInput label="Bio" source="bio" />
-        <ReferenceArrayInput
-          source="bookings"
-          reference="Booking"
-          parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
-          format={(value: any) => value && value.map((v: any) => v.id)}
-        >
-          <SelectArrayInput optionText={BookingTitle} />
-        </ReferenceArrayInput>
+        <div />
         <TextInput label="Brand Color" source="brandColor" />
         <NumberInput step={1} label="Buffer Time" source="bufferTime" />
         <BooleanInput

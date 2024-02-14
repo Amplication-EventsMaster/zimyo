@@ -1,7 +1,7 @@
 import { SortOrder } from "../../util/SortOrder";
 
 export type DestinationCalendarOrderByInput = {
-  bookingId?: SortOrder;
+  booking?: SortOrder;
   credentialId?: SortOrder;
   eventTypeId?: SortOrder;
   externalId?: SortOrder;

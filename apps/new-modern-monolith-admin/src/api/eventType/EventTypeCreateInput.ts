@@ -1,11 +1,8 @@
 import { AvailabilityCreateNestedManyWithoutEventTypesInput } from "./AvailabilityCreateNestedManyWithoutEventTypesInput";
-import { BookingCreateNestedManyWithoutEventTypesInput } from "./BookingCreateNestedManyWithoutEventTypesInput";
+import { InputJsonValue } from "../../types";
 import { EventTypeCustomInputCreateNestedManyWithoutEventTypesInput } from "./EventTypeCustomInputCreateNestedManyWithoutEventTypesInput";
 import { DestinationCalendarWhereUniqueInput } from "../destinationCalendar/DestinationCalendarWhereUniqueInput";
-import { HashedLinkWhereUniqueInput } from "../hashedLink/HashedLinkWhereUniqueInput";
-import { InputJsonValue } from "../../types";
 import { ScheduleWhereUniqueInput } from "../schedule/ScheduleWhereUniqueInput";
-import { TeamWhereUniqueInput } from "../team/TeamWhereUniqueInput";
 import { UserCreateNestedManyWithoutEventTypesInput } from "./UserCreateNestedManyWithoutEventTypesInput";
 import { WebhookCreateNestedManyWithoutEventTypesInput } from "./WebhookCreateNestedManyWithoutEventTypesInput";
 import { WorkflowsOnEventTypeCreateNestedManyWithoutEventTypesInput } from "./WorkflowsOnEventTypeCreateNestedManyWithoutEventTypesInput";
@@ -14,14 +11,14 @@ export type EventTypeCreateInput = {
   afterEventBuffer: number;
   availability?: AvailabilityCreateNestedManyWithoutEventTypesInput;
   beforeEventBuffer: number;
-  bookings?: BookingCreateNestedManyWithoutEventTypesInput;
+  bookings?: InputJsonValue;
   currency: string;
   customInputs?: EventTypeCustomInputCreateNestedManyWithoutEventTypesInput;
   description?: string | null;
   destinationCalendar?: DestinationCalendarWhereUniqueInput | null;
   disableGuests: boolean;
   eventName?: string | null;
-  hashedLink?: HashedLinkWhereUniqueInput | null;
+  hashedLink?: number | null;
   hidden: boolean;
   hideCalendarNotes: boolean;
   length: number;
@@ -43,7 +40,7 @@ export type EventTypeCreateInput = {
   slotInterval?: number | null;
   slug: string;
   successRedirectUrl?: string | null;
-  team?: TeamWhereUniqueInput | null;
+  team?: number | null;
   timeZone?: string | null;
   title: string;
   userId?: number | null;

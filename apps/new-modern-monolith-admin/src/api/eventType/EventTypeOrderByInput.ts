@@ -3,12 +3,13 @@ import { SortOrder } from "../../util/SortOrder";
 export type EventTypeOrderByInput = {
   afterEventBuffer?: SortOrder;
   beforeEventBuffer?: SortOrder;
+  bookings?: SortOrder;
   currency?: SortOrder;
   description?: SortOrder;
   destinationCalendarId?: SortOrder;
   disableGuests?: SortOrder;
   eventName?: SortOrder;
-  hashedLinkId?: SortOrder;
+  hashedLink?: SortOrder;
   hidden?: SortOrder;
   hideCalendarNotes?: SortOrder;
   id?: SortOrder;
@@ -31,7 +32,7 @@ export type EventTypeOrderByInput = {
   slotInterval?: SortOrder;
   slug?: SortOrder;
   successRedirectUrl?: SortOrder;
-  teamId?: SortOrder;
+  team?: SortOrder;
   timeZone?: SortOrder;
   title?: SortOrder;
   userId?: SortOrder;

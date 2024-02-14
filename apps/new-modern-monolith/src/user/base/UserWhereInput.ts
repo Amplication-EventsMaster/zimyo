@@ -19,7 +19,7 @@ import { ApiKeyListRelationFilter } from "../../apiKey/base/ApiKeyListRelationFi
 import { AvailabilityListRelationFilter } from "../../availability/base/AvailabilityListRelationFilter";
 import { StringNullableFilter } from "../../util/StringNullableFilter";
 import { BooleanFilter } from "../../util/BooleanFilter";
-import { BookingListRelationFilter } from "../../booking/base/BookingListRelationFilter";
+import { JsonFilter } from "../../util/JsonFilter";
 import { StringFilter } from "../../util/StringFilter";
 import { IntFilter } from "../../util/IntFilter";
 import { DateTimeFilter } from "../../util/DateTimeFilter";
@@ -31,7 +31,6 @@ import { EventTypeListRelationFilter } from "../../eventType/base/EventTypeListR
 import { FeedbackListRelationFilter } from "../../feedback/base/FeedbackListRelationFilter";
 import { EnumUserIdentityProvider } from "./EnumUserIdentityProvider";
 import { ImpersonationListRelationFilter } from "../../impersonation/base/ImpersonationListRelationFilter";
-import { JsonFilter } from "../../util/JsonFilter";
 import { EnumUserPlan } from "./EnumUserPlan";
 import { EnumUserRole } from "./EnumUserRole";
 import { ScheduleListRelationFilter } from "../../schedule/base/ScheduleListRelationFilter";
@@ -125,15 +124,14 @@ class UserWhereInput {
 
   @ApiProperty({
     required: false,
-    type: () => BookingListRelationFilter,
+    type: JsonFilter,
   })
-  @ValidateNested()
-  @Type(() => BookingListRelationFilter)
+  @Type(() => JsonFilter)
   @IsOptional()
-  @Field(() => BookingListRelationFilter, {
+  @Field(() => JsonFilter, {
     nullable: true,
   })
-  bookings?: BookingListRelationFilter;
+  bookings?: JsonFilter;
 
   @ApiProperty({
     required: false,

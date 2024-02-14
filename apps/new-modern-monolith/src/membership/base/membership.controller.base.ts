@@ -34,10 +34,6 @@ export class MembershipControllerBase {
       data: {
         ...data,
 
-        team: {
-          connect: data.team,
-        },
-
         user: {
           connect: data.user,
         },
@@ -46,12 +42,7 @@ export class MembershipControllerBase {
         accepted: true,
         id: true,
         role: true,
-
-        team: {
-          select: {
-            id: true,
-          },
-        },
+        team: true,
 
         user: {
           select: {
@@ -73,12 +64,7 @@ export class MembershipControllerBase {
         accepted: true,
         id: true,
         role: true,
-
-        team: {
-          select: {
-            id: true,
-          },
-        },
+        team: true,
 
         user: {
           select: {
@@ -101,12 +87,7 @@ export class MembershipControllerBase {
         accepted: true,
         id: true,
         role: true,
-
-        team: {
-          select: {
-            id: true,
-          },
-        },
+        team: true,
 
         user: {
           select: {
@@ -136,10 +117,6 @@ export class MembershipControllerBase {
         data: {
           ...data,
 
-          team: {
-            connect: data.team,
-          },
-
           user: {
             connect: data.user,
           },
@@ -148,12 +125,7 @@ export class MembershipControllerBase {
           accepted: true,
           id: true,
           role: true,
-
-          team: {
-            select: {
-              id: true,
-            },
-          },
+          team: true,
 
           user: {
             select: {
@@ -185,12 +157,7 @@ export class MembershipControllerBase {
           accepted: true,
           id: true,
           role: true,
-
-          team: {
-            select: {
-              id: true,
-            },
-          },
+          team: true,
 
           user: {
             select: {

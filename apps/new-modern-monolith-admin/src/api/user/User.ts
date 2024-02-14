@@ -1,13 +1,12 @@
 import { Account } from "../account/Account";
 import { ApiKey } from "../apiKey/ApiKey";
 import { Availability } from "../availability/Availability";
-import { Booking } from "../booking/Booking";
+import { JsonValue } from "type-fest";
 import { Credential } from "../credential/Credential";
 import { DestinationCalendar } from "../destinationCalendar/DestinationCalendar";
 import { EventType } from "../eventType/EventType";
 import { Feedback } from "../feedback/Feedback";
 import { Impersonation } from "../impersonation/Impersonation";
-import { JsonValue } from "type-fest";
 import { Schedule } from "../schedule/Schedule";
 import { SelectedCalendar } from "../selectedCalendar/SelectedCalendar";
 import { Session } from "../session/Session";
@@ -23,7 +22,7 @@ export type User = {
   avatar: string | null;
   away: boolean;
   bio: string | null;
-  bookings?: Array<Booking>;
+  bookings: JsonValue;
   brandColor: string;
   bufferTime: number;
   completedOnboarding: boolean;

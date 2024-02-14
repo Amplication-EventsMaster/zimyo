@@ -4,23 +4,21 @@ import {
   Edit,
   SimpleForm,
   EditProps,
-  ReferenceInput,
+  NumberInput,
   SelectInput,
   TextInput,
   BooleanInput,
   DateTimeInput,
+  ReferenceInput,
 } from "react-admin";
 
-import { BookingTitle } from "../booking/BookingTitle";
 import { WorkflowStepTitle } from "../workflowStep/WorkflowStepTitle";
 
 export const WorkflowReminderEdit = (props: EditProps): React.ReactElement => {
   return (
     <Edit {...props}>
       <SimpleForm>
-        <ReferenceInput source="booking.id" reference="Booking" label="Booking">
-          <SelectInput optionText={BookingTitle} />
-        </ReferenceInput>
+        <NumberInput step={1} label="Booking" source="booking" />
         <SelectInput
           source="method"
           label="Method"

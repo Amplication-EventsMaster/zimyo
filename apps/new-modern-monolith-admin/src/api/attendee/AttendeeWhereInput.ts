@@ -1,10 +1,10 @@
-import { BookingWhereUniqueInput } from "../booking/BookingWhereUniqueInput";
+import { IntNullableFilter } from "../../util/IntNullableFilter";
 import { StringFilter } from "../../util/StringFilter";
 import { IntFilter } from "../../util/IntFilter";
 import { StringNullableFilter } from "../../util/StringNullableFilter";
 
 export type AttendeeWhereInput = {
-  booking?: BookingWhereUniqueInput;
+  booking?: IntNullableFilter;
   email?: StringFilter;
   id?: IntFilter;
   locale?: StringNullableFilter;

@@ -285,6 +285,7 @@ export class ScheduleControllerBase {
       select: {
         afterEventBuffer: true,
         beforeEventBuffer: true,
+        bookings: true,
         currency: true,
         description: true,
 
@@ -296,13 +297,7 @@ export class ScheduleControllerBase {
 
         disableGuests: true,
         eventName: true,
-
-        hashedLink: {
-          select: {
-            id: true,
-          },
-        },
-
+        hashedLink: true,
         hidden: true,
         hideCalendarNotes: true,
         id: true,
@@ -331,13 +326,7 @@ export class ScheduleControllerBase {
         slotInterval: true,
         slug: true,
         successRedirectUrl: true,
-
-        team: {
-          select: {
-            id: true,
-          },
-        },
-
+        team: true,
         timeZone: true,
         title: true,
         userId: true,

@@ -3,24 +3,18 @@ import { EventTypeModule } from "./eventType/eventType.module";
 import { CredentialModule } from "./credential/credential.module";
 import { DestinationCalendarModule } from "./destinationCalendar/destinationCalendar.module";
 import { UserModule } from "./user/user.module";
-import { TeamModule } from "./team/team.module";
 import { MembershipModule } from "./membership/membership.module";
 import { VerificationTokenModule } from "./verificationToken/verificationToken.module";
-import { BookingReferenceModule } from "./bookingReference/bookingReference.module";
 import { AttendeeModule } from "./attendee/attendee.module";
-import { DailyEventReferenceModule } from "./dailyEventReference/dailyEventReference.module";
-import { BookingModule } from "./booking/booking.module";
 import { ScheduleModule } from "./schedule/schedule.module";
 import { AvailabilityModule } from "./availability/availability.module";
 import { SelectedCalendarModule } from "./selectedCalendar/selectedCalendar.module";
 import { EventTypeCustomInputModule } from "./eventTypeCustomInput/eventTypeCustomInput.module";
 import { ResetPasswordRequestModule } from "./resetPasswordRequest/resetPasswordRequest.module";
 import { ReminderMailModule } from "./reminderMail/reminderMail.module";
-import { PaymentModule } from "./payment/payment.module";
 import { WebhookModule } from "./webhook/webhook.module";
 import { ImpersonationModule } from "./impersonation/impersonation.module";
 import { ApiKeyModule } from "./apiKey/apiKey.module";
-import { HashedLinkModule } from "./hashedLink/hashedLink.module";
 import { AccountModule } from "./account/account.module";
 import { SessionModule } from "./session/session.module";
 import { AppModelModule } from "./appModel/appModel.module";
@@ -45,24 +39,18 @@ import { ApolloDriver, ApolloDriverConfig } from "@nestjs/apollo";
     CredentialModule,
     DestinationCalendarModule,
     UserModule,
-    TeamModule,
     MembershipModule,
     VerificationTokenModule,
-    BookingReferenceModule,
     AttendeeModule,
-    DailyEventReferenceModule,
-    BookingModule,
     ScheduleModule,
     AvailabilityModule,
     SelectedCalendarModule,
     EventTypeCustomInputModule,
     ResetPasswordRequestModule,
     ReminderMailModule,
-    PaymentModule,
     WebhookModule,
     ImpersonationModule,
     ApiKeyModule,
-    HashedLinkModule,
     AccountModule,
     SessionModule,
     AppModelModule,

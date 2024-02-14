@@ -3,12 +3,11 @@ import {
   List,
   Datagrid,
   ListProps,
-  ReferenceField,
   TextField,
   BooleanField,
+  ReferenceField,
 } from "react-admin";
 import Pagination from "../Components/Pagination";
-import { BOOKING_TITLE_FIELD } from "../booking/BookingTitle";
 import { WORKFLOWSTEP_TITLE_FIELD } from "../workflowStep/WorkflowStepTitle";
 
 export const WorkflowReminderList = (props: ListProps): React.ReactElement => {
@@ -21,9 +20,7 @@ export const WorkflowReminderList = (props: ListProps): React.ReactElement => {
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
-        <ReferenceField label="Booking" source="booking.id" reference="Booking">
-          <TextField source={BOOKING_TITLE_FIELD} />
-        </ReferenceField>
+        <TextField label="Booking" source="booking" />
         <TextField label="ID" source="id" />
         <TextField label="Method" source="method" />
         <TextField label="Reference Id" source="referenceId" />

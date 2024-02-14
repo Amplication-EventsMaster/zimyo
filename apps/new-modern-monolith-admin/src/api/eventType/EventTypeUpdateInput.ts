@@ -1,11 +1,8 @@
 import { AvailabilityUpdateManyWithoutEventTypesInput } from "./AvailabilityUpdateManyWithoutEventTypesInput";
-import { BookingUpdateManyWithoutEventTypesInput } from "./BookingUpdateManyWithoutEventTypesInput";
+import { InputJsonValue } from "../../types";
 import { EventTypeCustomInputUpdateManyWithoutEventTypesInput } from "./EventTypeCustomInputUpdateManyWithoutEventTypesInput";
 import { DestinationCalendarWhereUniqueInput } from "../destinationCalendar/DestinationCalendarWhereUniqueInput";
-import { HashedLinkWhereUniqueInput } from "../hashedLink/HashedLinkWhereUniqueInput";
-import { InputJsonValue } from "../../types";
 import { ScheduleWhereUniqueInput } from "../schedule/ScheduleWhereUniqueInput";
-import { TeamWhereUniqueInput } from "../team/TeamWhereUniqueInput";
 import { UserUpdateManyWithoutEventTypesInput } from "./UserUpdateManyWithoutEventTypesInput";
 import { WebhookUpdateManyWithoutEventTypesInput } from "./WebhookUpdateManyWithoutEventTypesInput";
 import { WorkflowsOnEventTypeUpdateManyWithoutEventTypesInput } from "./WorkflowsOnEventTypeUpdateManyWithoutEventTypesInput";
@@ -14,14 +11,14 @@ export type EventTypeUpdateInput = {
   afterEventBuffer?: number;
   availability?: AvailabilityUpdateManyWithoutEventTypesInput;
   beforeEventBuffer?: number;
-  bookings?: BookingUpdateManyWithoutEventTypesInput;
+  bookings?: InputJsonValue;
   currency?: string;
   customInputs?: EventTypeCustomInputUpdateManyWithoutEventTypesInput;
   description?: string | null;
   destinationCalendar?: DestinationCalendarWhereUniqueInput | null;
   disableGuests?: boolean;
   eventName?: string | null;
-  hashedLink?: HashedLinkWhereUniqueInput | null;
+  hashedLink?: number | null;
   hidden?: boolean;
   hideCalendarNotes?: boolean;
   length?: number;
@@ -43,7 +40,7 @@ export type EventTypeUpdateInput = {
   slotInterval?: number | null;
   slug?: string;
   successRedirectUrl?: string | null;
-  team?: TeamWhereUniqueInput | null;
+  team?: number | null;
   timeZone?: string | null;
   title?: string;
   userId?: number | null;

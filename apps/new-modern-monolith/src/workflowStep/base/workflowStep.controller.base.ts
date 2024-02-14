@@ -204,12 +204,7 @@ export class WorkflowStepControllerBase {
     const results = await this.service.findWorkflowReminders(params.id, {
       ...query,
       select: {
-        booking: {
-          select: {
-            id: true,
-          },
-        },
-
+        booking: true,
         id: true,
         method: true,
         referenceId: true,

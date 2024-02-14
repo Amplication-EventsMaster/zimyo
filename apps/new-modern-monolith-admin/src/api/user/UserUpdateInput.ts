@@ -1,13 +1,12 @@
 import { AccountUpdateManyWithoutUsersInput } from "./AccountUpdateManyWithoutUsersInput";
 import { ApiKeyUpdateManyWithoutUsersInput } from "./ApiKeyUpdateManyWithoutUsersInput";
 import { AvailabilityUpdateManyWithoutUsersInput } from "./AvailabilityUpdateManyWithoutUsersInput";
-import { BookingUpdateManyWithoutUsersInput } from "./BookingUpdateManyWithoutUsersInput";
+import { InputJsonValue } from "../../types";
 import { CredentialUpdateManyWithoutUsersInput } from "./CredentialUpdateManyWithoutUsersInput";
 import { DestinationCalendarWhereUniqueInput } from "../destinationCalendar/DestinationCalendarWhereUniqueInput";
 import { EventTypeUpdateManyWithoutUsersInput } from "./EventTypeUpdateManyWithoutUsersInput";
 import { FeedbackUpdateManyWithoutUsersInput } from "./FeedbackUpdateManyWithoutUsersInput";
 import { ImpersonationUpdateManyWithoutUsersInput } from "./ImpersonationUpdateManyWithoutUsersInput";
-import { InputJsonValue } from "../../types";
 import { ScheduleUpdateManyWithoutUsersInput } from "./ScheduleUpdateManyWithoutUsersInput";
 import { SelectedCalendarUpdateManyWithoutUsersInput } from "./SelectedCalendarUpdateManyWithoutUsersInput";
 import { SessionUpdateManyWithoutUsersInput } from "./SessionUpdateManyWithoutUsersInput";
@@ -23,7 +22,7 @@ export type UserUpdateInput = {
   avatar?: string | null;
   away?: boolean;
   bio?: string | null;
-  bookings?: BookingUpdateManyWithoutUsersInput;
+  bookings?: InputJsonValue;
   brandColor?: string;
   bufferTime?: number;
   completedOnboarding?: boolean;

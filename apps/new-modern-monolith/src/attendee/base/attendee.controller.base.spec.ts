@@ -18,6 +18,7 @@ import { AttendeeService } from "../attendee.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
+  booking: 42,
   email: "exampleEmail",
   id: 42,
   locale: "exampleLocale",
@@ -25,6 +26,7 @@ const CREATE_INPUT = {
   timeZone: "exampleTimeZone",
 };
 const CREATE_RESULT = {
+  booking: 42,
   email: "exampleEmail",
   id: 42,
   locale: "exampleLocale",
@@ -33,6 +35,7 @@ const CREATE_RESULT = {
 };
 const FIND_MANY_RESULT = [
   {
+    booking: 42,
     email: "exampleEmail",
     id: 42,
     locale: "exampleLocale",
@@ -41,6 +44,7 @@ const FIND_MANY_RESULT = [
   },
 ];
 const FIND_ONE_RESULT = {
+  booking: 42,
   email: "exampleEmail",
   id: 42,
   locale: "exampleLocale",

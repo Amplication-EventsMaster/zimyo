@@ -34,23 +34,12 @@ export class WorkflowReminderControllerBase {
       data: {
         ...data,
 
-        booking: data.booking
-          ? {
-              connect: data.booking,
-            }
-          : undefined,
-
         workflowStep: {
           connect: data.workflowStep,
         },
       },
       select: {
-        booking: {
-          select: {
-            id: true,
-          },
-        },
-
+        booking: true,
         id: true,
         method: true,
         referenceId: true,
@@ -76,12 +65,7 @@ export class WorkflowReminderControllerBase {
     return this.service.workflowReminders({
       ...args,
       select: {
-        booking: {
-          select: {
-            id: true,
-          },
-        },
-
+        booking: true,
         id: true,
         method: true,
         referenceId: true,
@@ -106,12 +90,7 @@ export class WorkflowReminderControllerBase {
     const result = await this.service.workflowReminder({
       where: params,
       select: {
-        booking: {
-          select: {
-            id: true,
-          },
-        },
-
+        booking: true,
         id: true,
         method: true,
         referenceId: true,
@@ -146,23 +125,12 @@ export class WorkflowReminderControllerBase {
         data: {
           ...data,
 
-          booking: data.booking
-            ? {
-                connect: data.booking,
-              }
-            : undefined,
-
           workflowStep: {
             connect: data.workflowStep,
           },
         },
         select: {
-          booking: {
-            select: {
-              id: true,
-            },
-          },
-
+          booking: true,
           id: true,
           method: true,
           referenceId: true,
@@ -196,12 +164,7 @@ export class WorkflowReminderControllerBase {
       return await this.service.deleteWorkflowReminder({
         where: params,
         select: {
-          booking: {
-            select: {
-              id: true,
-            },
-          },
-
+          booking: true,
           id: true,
           method: true,
           referenceId: true,

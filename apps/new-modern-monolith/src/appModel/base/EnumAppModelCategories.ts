@@ -9,7 +9,6 @@ https://docs.amplication.com/how-to/custom-code
 
 ------------------------------------------------------------------------------
   */
-import { Payment } from "../../payment/base/Payment";
 import { registerEnumType } from "@nestjs/graphql";
 
 export enum EnumAppModelCategories {

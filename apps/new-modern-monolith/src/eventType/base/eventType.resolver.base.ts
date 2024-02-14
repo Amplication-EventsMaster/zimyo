@@ -22,8 +22,6 @@ import { UpdateEventTypeArgs } from "./UpdateEventTypeArgs";
 import { DeleteEventTypeArgs } from "./DeleteEventTypeArgs";
 import { AvailabilityFindManyArgs } from "../../availability/base/AvailabilityFindManyArgs";
 import { Availability } from "../../availability/base/Availability";
-import { BookingFindManyArgs } from "../../booking/base/BookingFindManyArgs";
-import { Booking } from "../../booking/base/Booking";
 import { EventTypeCustomInputFindManyArgs } from "../../eventTypeCustomInput/base/EventTypeCustomInputFindManyArgs";
 import { EventTypeCustomInput } from "../../eventTypeCustomInput/base/EventTypeCustomInput";
 import { UserFindManyArgs } from "../../user/base/UserFindManyArgs";
@@ -33,9 +31,7 @@ import { Webhook } from "../../webhook/base/Webhook";
 import { WorkflowsOnEventTypeFindManyArgs } from "../../workflowsOnEventType/base/WorkflowsOnEventTypeFindManyArgs";
 import { WorkflowsOnEventType } from "../../workflowsOnEventType/base/WorkflowsOnEventType";
 import { DestinationCalendar } from "../../destinationCalendar/base/DestinationCalendar";
-import { HashedLink } from "../../hashedLink/base/HashedLink";
 import { Schedule } from "../../schedule/base/Schedule";
-import { Team } from "../../team/base/Team";
 import { EventTypeService } from "../eventType.service";
 @graphql.Resolver(() => EventType)
 export class EventTypeResolverBase {
@@ -83,21 +79,9 @@ export class EventTypeResolverBase {
             }
           : undefined,
 
-        hashedLink: args.data.hashedLink
-          ? {
-              connect: args.data.hashedLink,
-            }
-          : undefined,
-
         schedule: args.data.schedule
           ? {
               connect: args.data.schedule,
-            }
-          : undefined,
-
-        team: args.data.team
-          ? {
-              connect: args.data.team,
             }
           : undefined,
       },
@@ -120,21 +104,9 @@ export class EventTypeResolverBase {
               }
             : undefined,
 
-          hashedLink: args.data.hashedLink
-            ? {
-                connect: args.data.hashedLink,
-              }
-            : undefined,
-
           schedule: args.data.schedule
             ? {
                 connect: args.data.schedule,
-              }
-            : undefined,
-
-          team: args.data.team
-            ? {
-                connect: args.data.team,
               }
             : undefined,
         },
@@ -171,20 +143,6 @@ export class EventTypeResolverBase {
     @graphql.Args() args: AvailabilityFindManyArgs
   ): Promise<Availability[]> {
     const results = await this.service.findAvailability(parent.id, args);
-
-    if (!results) {
-      return [];
-    }
-
-    return results;
-  }
-
-  @graphql.ResolveField(() => [Booking], { name: "bookings" })
-  async findBookings(
-    @graphql.Parent() parent: EventType,
-    @graphql.Args() args: BookingFindManyArgs
-  ): Promise<Booking[]> {
-    const results = await this.service.findBookings(parent.id, args);
 
     if (!results) {
       return [];
@@ -264,21 +222,6 @@ export class EventTypeResolverBase {
     return result;
   }
 
-  @graphql.ResolveField(() => HashedLink, {
-    nullable: true,
-    name: "hashedLink",
-  })
-  async getHashedLink(
-    @graphql.Parent() parent: EventType
-  ): Promise<HashedLink | null> {
-    const result = await this.service.getHashedLink(parent.id);
-
-    if (!result) {
-      return null;
-    }
-    return result;
-  }
-
   @graphql.ResolveField(() => Schedule, {
     nullable: true,
     name: "schedule",
@@ -287,19 +230,6 @@ export class EventTypeResolverBase {
     @graphql.Parent() parent: EventType
   ): Promise<Schedule | null> {
     const result = await this.service.getSchedule(parent.id);
-
-    if (!result) {
-      return null;
-    }
-    return result;
-  }
-
-  @graphql.ResolveField(() => Team, {
-    nullable: true,
-    name: "team",
-  })
-  async getTeam(@graphql.Parent() parent: EventType): Promise<Team | null> {
-    const result = await this.service.getTeam(parent.id);
 
     if (!result) {
       return null;

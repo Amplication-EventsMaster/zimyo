@@ -22,17 +22,14 @@ import {
 } from "class-validator";
 import { AvailabilityCreateNestedManyWithoutEventTypesInput } from "./AvailabilityCreateNestedManyWithoutEventTypesInput";
 import { Type } from "class-transformer";
-import { BookingCreateNestedManyWithoutEventTypesInput } from "./BookingCreateNestedManyWithoutEventTypesInput";
-import { EventTypeCustomInputCreateNestedManyWithoutEventTypesInput } from "./EventTypeCustomInputCreateNestedManyWithoutEventTypesInput";
-import { DestinationCalendarWhereUniqueInput } from "../../destinationCalendar/base/DestinationCalendarWhereUniqueInput";
-import { HashedLinkWhereUniqueInput } from "../../hashedLink/base/HashedLinkWhereUniqueInput";
 import { IsJSONValue } from "../../validators";
 import { GraphQLJSON } from "graphql-type-json";
 import { InputJsonValue } from "../../types";
+import { EventTypeCustomInputCreateNestedManyWithoutEventTypesInput } from "./EventTypeCustomInputCreateNestedManyWithoutEventTypesInput";
+import { DestinationCalendarWhereUniqueInput } from "../../destinationCalendar/base/DestinationCalendarWhereUniqueInput";
 import { EnumEventTypePeriodType } from "./EnumEventTypePeriodType";
 import { ScheduleWhereUniqueInput } from "../../schedule/base/ScheduleWhereUniqueInput";
 import { EnumEventTypeSchedulingType } from "./EnumEventTypeSchedulingType";
-import { TeamWhereUniqueInput } from "../../team/base/TeamWhereUniqueInput";
 import { UserCreateNestedManyWithoutEventTypesInput } from "./UserCreateNestedManyWithoutEventTypesInput";
 import { WebhookCreateNestedManyWithoutEventTypesInput } from "./WebhookCreateNestedManyWithoutEventTypesInput";
 import { WorkflowsOnEventTypeCreateNestedManyWithoutEventTypesInput } from "./WorkflowsOnEventTypeCreateNestedManyWithoutEventTypesInput";
@@ -69,15 +66,13 @@ class EventTypeCreateInput {
 
   @ApiProperty({
     required: false,
-    type: () => BookingCreateNestedManyWithoutEventTypesInput,
   })
-  @ValidateNested()
-  @Type(() => BookingCreateNestedManyWithoutEventTypesInput)
+  @IsJSONValue()
   @IsOptional()
-  @Field(() => BookingCreateNestedManyWithoutEventTypesInput, {
+  @Field(() => GraphQLJSON, {
     nullable: true,
   })
-  bookings?: BookingCreateNestedManyWithoutEventTypesInput;
+  bookings?: InputJsonValue;
 
   @ApiProperty({
     required: true,
@@ -143,15 +138,14 @@ class EventTypeCreateInput {
 
   @ApiProperty({
     required: false,
-    type: () => HashedLinkWhereUniqueInput,
+    type: Number,
   })
-  @ValidateNested()
-  @Type(() => HashedLinkWhereUniqueInput)
+  @IsInt()
   @IsOptional()
-  @Field(() => HashedLinkWhereUniqueInput, {
+  @Field(() => Number, {
     nullable: true,
   })
-  hashedLink?: HashedLinkWhereUniqueInput | null;
+  hashedLink?: number | null;
 
   @ApiProperty({
     required: true,
@@ -357,15 +351,14 @@ class EventTypeCreateInput {
 
   @ApiProperty({
     required: false,
-    type: () => TeamWhereUniqueInput,
+    type: Number,
   })
-  @ValidateNested()
-  @Type(() => TeamWhereUniqueInput)
+  @IsInt()
   @IsOptional()
-  @Field(() => TeamWhereUniqueInput, {
+  @Field(() => Number, {
     nullable: true,
   })
-  team?: TeamWhereUniqueInput | null;
+  team?: number | null;
 
   @ApiProperty({
     required: false,

@@ -50,6 +50,17 @@ class EventTypeOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
+  bookings?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
   currency?: SortOrder;
 
   @ApiProperty({
@@ -105,7 +116,7 @@ class EventTypeOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  hashedLinkId?: SortOrder;
+  hashedLink?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -358,7 +369,7 @@ class EventTypeOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  teamId?: SortOrder;
+  team?: SortOrder;
 
   @ApiProperty({
     required: false,

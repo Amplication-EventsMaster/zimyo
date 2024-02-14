@@ -28,7 +28,7 @@ class WorkflowReminderOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  bookingUid?: SortOrder;
+  booking?: SortOrder;
 
   @ApiProperty({
     required: false,

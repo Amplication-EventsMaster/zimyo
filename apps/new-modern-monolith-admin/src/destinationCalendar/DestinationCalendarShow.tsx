@@ -3,10 +3,9 @@ import {
   Show,
   SimpleShowLayout,
   ShowProps,
-  ReferenceField,
   TextField,
+  ReferenceField,
 } from "react-admin";
-import { BOOKING_TITLE_FIELD } from "../booking/BookingTitle";
 import { CREDENTIAL_TITLE_FIELD } from "../credential/CredentialTitle";
 import { EVENTTYPE_TITLE_FIELD } from "../eventType/EventTypeTitle";
 import { USER_TITLE_FIELD } from "../user/UserTitle";
@@ -17,9 +16,7 @@ export const DestinationCalendarShow = (
   return (
     <Show {...props}>
       <SimpleShowLayout>
-        <ReferenceField label="Booking" source="booking.id" reference="Booking">
-          <TextField source={BOOKING_TITLE_FIELD} />
-        </ReferenceField>
+        <TextField label="Booking" source="booking" />
         <ReferenceField
           label="Credential"
           source="credential.id"

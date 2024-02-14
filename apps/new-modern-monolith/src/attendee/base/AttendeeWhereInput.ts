@@ -11,9 +11,9 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { BookingWhereUniqueInput } from "../../booking/base/BookingWhereUniqueInput";
-import { ValidateNested, IsOptional } from "class-validator";
+import { IntNullableFilter } from "../../util/IntNullableFilter";
 import { Type } from "class-transformer";
+import { IsOptional } from "class-validator";
 import { StringFilter } from "../../util/StringFilter";
 import { IntFilter } from "../../util/IntFilter";
 import { StringNullableFilter } from "../../util/StringNullableFilter";
@@ -22,15 +22,14 @@ import { StringNullableFilter } from "../../util/StringNullableFilter";
 class AttendeeWhereInput {
   @ApiProperty({
     required: false,
-    type: () => BookingWhereUniqueInput,
+    type: IntNullableFilter,
   })
-  @ValidateNested()
-  @Type(() => BookingWhereUniqueInput)
+  @Type(() => IntNullableFilter)
   @IsOptional()
-  @Field(() => BookingWhereUniqueInput, {
+  @Field(() => IntNullableFilter, {
     nullable: true,
   })
-  booking?: BookingWhereUniqueInput;
+  booking?: IntNullableFilter;
 
   @ApiProperty({
     required: false,

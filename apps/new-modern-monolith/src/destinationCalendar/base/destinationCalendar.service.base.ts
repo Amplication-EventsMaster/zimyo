@@ -14,7 +14,6 @@ import { PrismaService } from "../../prisma/prisma.service";
 import {
   Prisma,
   DestinationCalendar, // @ts-ignore
-  Booking, // @ts-ignore
   Credential, // @ts-ignore
   EventType, // @ts-ignore
   User,
@@ -59,14 +58,6 @@ export class DestinationCalendarServiceBase {
     args: Prisma.SelectSubset<T, Prisma.DestinationCalendarDeleteArgs>
   ): Promise<DestinationCalendar> {
     return this.prisma.destinationCalendar.delete(args);
-  }
-
-  async getBooking(parentId: number): Promise<Booking | null> {
-    return this.prisma.destinationCalendar
-      .findUnique({
-        where: { id: parentId },
-      })
-      .booking();
   }
 
   async getCredential(parentId: number): Promise<Credential | null> {

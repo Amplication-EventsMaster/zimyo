@@ -1,8 +1,7 @@
-import { Booking } from "../booking/Booking";
 import { WorkflowStep } from "../workflowStep/WorkflowStep";
 
 export type WorkflowReminder = {
-  booking?: Booking | null;
+  booking: number | null;
   id: number;
   method?: "EMAIL" | "SMS";
   referenceId: string | null;

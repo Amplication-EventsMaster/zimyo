@@ -18,12 +18,14 @@ import { WorkflowReminderService } from "../workflowReminder.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
+  booking: 42,
   id: 42,
   referenceId: "exampleReferenceId",
   scheduled: "true",
   scheduledDate: new Date(),
 };
 const CREATE_RESULT = {
+  booking: 42,
   id: 42,
   referenceId: "exampleReferenceId",
   scheduled: "true",
@@ -31,6 +33,7 @@ const CREATE_RESULT = {
 };
 const FIND_MANY_RESULT = [
   {
+    booking: 42,
     id: 42,
     referenceId: "exampleReferenceId",
     scheduled: "true",
@@ -38,6 +41,7 @@ const FIND_MANY_RESULT = [
   },
 ];
 const FIND_ONE_RESULT = {
+  booking: 42,
   id: 42,
   referenceId: "exampleReferenceId",
   scheduled: "true",

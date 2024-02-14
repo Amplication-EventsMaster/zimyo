@@ -11,9 +11,9 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { BookingWhereUniqueInput } from "../../booking/base/BookingWhereUniqueInput";
-import { ValidateNested, IsOptional } from "class-validator";
+import { IntNullableFilter } from "../../util/IntNullableFilter";
 import { Type } from "class-transformer";
+import { IsOptional, ValidateNested } from "class-validator";
 import { CredentialWhereUniqueInput } from "../../credential/base/CredentialWhereUniqueInput";
 import { EventTypeWhereUniqueInput } from "../../eventType/base/EventTypeWhereUniqueInput";
 import { StringFilter } from "../../util/StringFilter";
@@ -24,15 +24,14 @@ import { UserWhereUniqueInput } from "../../user/base/UserWhereUniqueInput";
 class DestinationCalendarWhereInput {
   @ApiProperty({
     required: false,
-    type: () => BookingWhereUniqueInput,
+    type: IntNullableFilter,
   })
-  @ValidateNested()
-  @Type(() => BookingWhereUniqueInput)
+  @Type(() => IntNullableFilter)
   @IsOptional()
-  @Field(() => BookingWhereUniqueInput, {
+  @Field(() => IntNullableFilter, {
     nullable: true,
   })
-  booking?: BookingWhereUniqueInput;
+  booking?: IntNullableFilter;
 
   @ApiProperty({
     required: false,
